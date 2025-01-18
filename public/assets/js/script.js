@@ -25,4 +25,4 @@ document.getElementById("navbar").innerHTML = `
 </nav>`;
 
 // display footer
-document.getElementById("footer").innerHTML += `<p>SPARChives. &copy; 2024 PSHS-MC SPARC 2028</p>`;
+document.getElementById("footer").innerHTML += `<p><b>SPARChives</b>. Website made by Kaiser Chan and Schiel Battung for PSHS-MC SPARC 2028.</p>`;
