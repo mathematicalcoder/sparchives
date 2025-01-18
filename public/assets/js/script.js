@@ -1,6 +1,6 @@
 // display navbar
 document.getElementById("navbar").innerHTML = `
-<nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+<nav class="navbar navbar-expand-sm navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="https://wdprojsrbattungchan.glitch.me/">SPARChives</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
