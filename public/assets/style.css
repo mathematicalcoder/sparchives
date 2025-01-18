@@ -32,6 +32,46 @@ body {
   text-align:justify;
   font-size:18px;
   height:100%;
+  background-image: url(https://img.notionusercontent.com/s3/prod-files-secure%2F6820aae3-a655-44a6-b9b6-ae05f6d34f60%2F937cc3ba-c8a0-4e0e-bd22-5c723c0e526e%2F1000001683.png/size/w=2000?exp=1737256021&sig=s7WUENN6IRYQTCQ8kGHoObB9Ai_swsPcW-QOG9qX398);
+  background-size: cover;
+}
+
+@media only screen and (min-width: 1100px) {
+  .homeOverlay {
+    position: fixed;
+    left: 5%;
+    top: 10%;
+    width: 40%;
+    padding: 10px;
+    background-color: white;
+  }
+  .homeFooter {
+    position: fixed;
+    bottom: 0%;
+    background-color: white;
+    font-size: 10px;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .homeOverlay {
+    background-color: white;
+    margin: 10px;
+    padding: 5px;
+  }
+  .homeFooter {
+    bottom: 0%;
+    width: auto;
+    background-color: white;
+    font-size: 10px;
+    margin: 10px;
+  }
+  p {
+    margin: 0;
+  }
 }
 
 div.banner {
