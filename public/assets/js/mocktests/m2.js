@@ -1,4 +1,4 @@
-// Specifics for Step Functions (m1)
+// Specifics for Step Functions
 
 /* DETAILS
 - title:       The title of the mock test.

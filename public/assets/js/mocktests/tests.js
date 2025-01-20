@@ -9,6 +9,17 @@ const mockTests = [
     author: "Kaiser Chan",
     link: "/mocktests/meta/m1/"
   },
+  {
+    title: "Step Functions",
+    description: "This mock test will help you master the concept of step functions.",
+    subject: "Mathematics",
+    grade: "9",
+    quarter: "3",
+    date: new Date("2025-01-20"),
+    author: "Kaiser Chan",
+    link: "/mocktests/math3/stepfunc/"
+  },
+  
 ]
 
 function sortLatest(tests) {
