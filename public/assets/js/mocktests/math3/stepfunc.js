@@ -30,22 +30,29 @@ const details = {
     {
       points: 1,
       question:
-      String.raw`For the next three items, consider $f(x)=\lfloor3x-5\rfloor$, $g(x)=2\lceilx+4\rceil$, and $h(x)=\operatorname{sgn}(2x)-4$.<br><br>Evaluate $f(5)-f(2.5)$.`,
+      String.raw`For the next four items, consider $f(x)=\lfloor3x-5\rfloor$, $g(x)=2\lceil x+4\rceil$, and $h(x)=\operatorname{sgn}(2x)-4$.<br><br>Evaluate $f(5)-f(2.5)$.`,
       answer: "8",
       type: "text"
     },
     {
       points: 1,
       question: 
-      `Evaluate $|g(-8.2)|$.`,
-      answer: "8",
+      `Evaluate $g(-8.2)$.`,
+      answer: "-8",
       type: "text"
     },
     {
-      points: 1,
+      points: 2,
       question: 
       `What is the largest possible value of $h(x)$ for any real number $x$?`,
       answer: "-3",
       type: "text"
     },
+    {
+      points: 2,
+      question:
+      String.raw`True or false: $2$ is in the range of $g(x)$. (Type <code>T</code> for true and <code>F</code> for false.)`,
+      answer: "T",
+      type: "text"
+    }
   ]
