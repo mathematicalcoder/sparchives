@@ -30,7 +30,7 @@ const details = {
     {
       points: 1,
       question:
-      String.raw`ASN: If $a$ is an integer and $b$ is a real number, then $\lfloor a+b\rfloor=a+\left\lfloorb\right\rfloor$. (Type <code>A</code> for always, <code>S</code> for sometimes, and <code>N</code> for never.)`,
+      String.raw`ASN: If $a$ is an integer and $b$ is a real number, then $\lfloor a+b\rfloor=a+\lfloor b\rfloor$. (Type <code>A</code> for always, <code>S</code> for sometimes, and <code>N</code> for never.)`,
       answer: "A",
       type: "text"
     },
