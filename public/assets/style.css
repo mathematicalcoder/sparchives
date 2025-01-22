@@ -319,4 +319,5 @@ footer {
 
 table#questions td {
   text-align: left;
+  vertical-align: top;
 }
