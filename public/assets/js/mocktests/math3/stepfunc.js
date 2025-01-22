@@ -54,5 +54,12 @@ const details = {
       String.raw`True or false: $2$ is in the range of $g(x)$. (Type <code>T</code> for true and <code>F</code> for false.)`,
       answer: "T",
       type: "text"
-    }
+    },
+    {
+      points: 1,
+      question:
+      String.raw`State in interval notation the set of all possible values of $x$ where $\lfloor 2x+1\rfloor=5$. (Do not put any spaces in your answer. Write fractions in the form <code>a/b</code>. Use <code>inf</code> for infinity.)`,
+      answer: "[2,5/2)",
+      type: "text"
+    },
   ]
