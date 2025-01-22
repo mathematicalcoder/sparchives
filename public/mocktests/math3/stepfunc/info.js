@@ -81,7 +81,7 @@ const details = {
     {
       points: 1,
       question:
-      String.raw`Find the value of $p(50)+p\left(\frac{-25}{2}\right)$.`,
+      String.raw`Find the value of $p(50)+p\left(-\frac{25}{2}\right)$.`,
       answer: "-65",
       type: "text"
     },
