@@ -73,7 +73,7 @@ const details = {
       points: 2,
       question:
       String.raw`For the next two items, refer to the graph of the <b>ceiling</b> function $p(x)$ below.
-      <center><img src="https://cdn.glitch.global/53819453-3d57-487f-b6e1-86bfc5d1d91f/stepfuncgraph.png?v=1737518195574"></center>
+      <center><img height="400" src="https://cdn.glitch.global/53819453-3d57-487f-b6e1-86bfc5d1d91f/stepfuncgraph.png?v=1737518195574"></center>
       Suppose that $p(x)=a\lceil bx+h\rceil+k$. Find $a+b+h+k$.`,
       answer: "4",
       type: "text"
