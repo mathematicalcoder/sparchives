@@ -1,6 +1,16 @@
 # Project Progress 1
 *_SPARChives_, a Computer Science 3 project by Kaiser Travis Chan (and Schiel Lueone Battung). Last updated on 24 January 2025.*
 
+## Contents
+1. [Prospective web pages and other plans](#prospective-web-pages-and-other-plans-for-the-rest-of-the-academic-year)
+   1. [Addition of more reviewers and mock tests](#addition-of-more-reviewers-and-mock-tests)
+   2. [Exam calendar](#exam-calendar)
+   3. [Gradesheet](#gradesheet)
+   4. [Account system and other databases](#account-system-and-other-databases-least-priority)
+2. [Updates on existing pages](#updates-on-existing-pages)
+   1. [Reviewers](#reviewers)
+   2. [Mock tests](#mock-tests)
+
 ## Prospective web pages and other plans (for the rest of the academic year)
 ### Addition of more reviewers and mock tests
 The website mainly focuses on the reviewers and mock tests that are written by people in SPARC. The plan is to upload as many reviewers and mock tests as possible to turn the website into a comprehensive pseudo-database (as it currently consists of JS objects). _However, the bulk of the committee’s reviewers are written by members outside the website project, so there is a huge chance that this website will remain merely as a prototype and might be used in its entirety once the school year ends._
@@ -13,4 +23,3 @@ The account system would let users save their progress in reviewers and mock tes
 ## Updates on existing pages
 ### Reviewers
 ### Mock tests
-### Essential hyperlinks
