@@ -9,7 +9,7 @@ document.getElementById("navbar").innerHTML = `
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link disabled" href="https://wdprojsrbattungchan.glitch.me/examcalendar">Exam Calendar</a>
+        <a class="nav-link" href="https://wdprojsrbattungchan.glitch.me/examcalendar">Exam Calendar</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="https://wdprojsrbattungchan.glitch.me/reviewers">Reviewers</a>
