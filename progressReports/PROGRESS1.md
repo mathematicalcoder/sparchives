@@ -22,4 +22,6 @@ The gradesheet allows users to compute their grades in a certain subject given t
 The account system would let users save their progress in reviewers and mock tests and also their grades in the gradesheet so they can easily access their data from any device. Additionally, this would let SPARC committee members contribute their own reviewers and mock tests (either as a link or in markdown form) and get it up in the website. _This is the least priority among the prospective pages as it is the hardest to implement and it is likely outside the scope of the third quarter of CS 3._
 ## Updates on existing pages
 ### Reviewers
+A few [reviewers](https://wdprojsrbattungchan.glitch.me/reviewers) have been added as of December 2024. As of now, only math content is available and is yet to be finished.
 ### Mock tests
+An [actual mock test](https://wdprojsrbattungchan.glitch.me/mocktests/math3/stepfunc/) has been added for testing purposes and also to increase the usability of the website.
