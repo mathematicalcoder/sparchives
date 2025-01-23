@@ -24,7 +24,8 @@
         <li><span id="description"></span></li>
         <li>This is a <span id="timeLimit"></span>-minute, <span id="noQuestions"></span>-question test. The highest possible score is <span id="hpsInst"></span> points.</li>
         <li>Answer all questions without any notes, resources, calculators, etc.</li>
-        <li>Answers that require words are not case sensitive and ignore all whitespace before and after the answer. For example, if the correct answer is “<code>apple</code>”, both “<code>ApPlE</code>” and “<code>   apple  </code>” count as correct answers.</li>
+        <li>Answers are not case sensitive and ignore all whitespace before and after the answer. For example, if the correct answer is “<code>apple</code>”, both “<code>ApPlE</code>” and “<code>   apple  </code>” count as correct answers.</li>
+        <li>Where applicable, follow the answer format stated in the questions.</li>
       </ol>
       <a href="test.html"><button>
         Start Mock Test (timed)
@@ -35,7 +36,7 @@
   </footer>
   <script src="https://wdprojsrbattungchan.glitch.me/assets/js/script.js"></script>
   <script src="https://wdprojsrbattungchan.glitch.me/assets/js/mocktests/tests.js"></script>
-  <script src="https://wdprojsrbattungchan.glitch.me/assets/js/mocktests/m2.js"></script>
+  <script src="info.js"></script>
   <script>
     coverPage(details.title, details.description, details.timeLimit, questions.length, hps(questions))
   </script>
