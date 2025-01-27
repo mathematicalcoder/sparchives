@@ -34,6 +34,21 @@ body {
   height:100%;
 }
 
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 @media only screen and (min-width: 1100px) {
   .homeOverlay {
     position: fixed;
@@ -42,6 +57,8 @@ body {
     width: 40%;
     padding: 10px;
     background-color: white;
+    opacity: 0;
+    animation: fadeIn 2s forwards, float 2s ease-in-out forwards;
   }
   .homeFooter {
     position: fixed;
@@ -71,6 +88,28 @@ body {
     margin: 0;
   }
 }
+
+/* Credits to Sir Roy Canseco for the below code! */
+
+a {
+  position: relative;
+  text-decoration: none;
+}
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s;
+}
+a:hover::after {
+  width: 100%;
+}
+
+/* Credits to Sir Roy Canseco for the above code! */
 
 div.banner {
   width:100%;
@@ -199,7 +238,7 @@ th {
 
 nav {
   background-color: #96403C;
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
 }

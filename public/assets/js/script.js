@@ -11,7 +11,7 @@ document.getElementById("navbar").innerHTML = `
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link disabled" href="${domain}/examcalendar">Exam Calendar</a>
+        <a class="nav-link" href="${domain}/examcalendar">Exam Calendar</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="${domain}/reviewers">Reviewers</a>
@@ -27,4 +27,4 @@ document.getElementById("navbar").innerHTML = `
 </nav>`;
 
 // display footer
-document.getElementById("footer").innerHTML += `<p><b>SPARChives</b>. Website made by Kaiser Chan and Schiel Battung for PSHS-MC SPARC 2028.</p>`;
+document.getElementById("footer").innerHTML += `<p><b>SPARChives</b>. Website made by Kaiser Chan (9-Sr) and Schiel Battung (9-Sr) for PSHS-MC SPARC 2028. <br> <a href="https://github.com/mathematicalcoder/sparchives/issues">Report bugs or request features here</a></p>`;
