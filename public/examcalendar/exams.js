@@ -63,6 +63,134 @@ exams = [
         grade: "9",
         quarter: "3"
     },
+    {
+        name: "SS 3 Q3 Long Test 1 (Th)",
+        date: new Date("2025-02-13"),
+        sections: ["K", "Rb"],
+        subject: "Social Science",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "SS 3 Q3 Long Test 1 (F)",
+        date: new Date("2025-02-14"),
+        sections: ["Li", "Sr"],
+        subject: "Social Science",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "SS 3 Q3 Quiz 1 (Th)",
+        date: new Date("2025-01-30"),
+        sections: ["K", "Rb"],
+        subject: "Social Science",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "SS 3 Q3 Quiz 1 (F)",
+        date: new Date("2025-01-31"),
+        sections: ["Li", "Sr"],
+        subject: "Social Science",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Stat Q3 Lab Activity 1 (Th)",
+        date: new Date("2025-01-30"),
+        sections: ["Be", "Li", "Mg", "Na"],
+        subject: "Statistics",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Stat Q3 Lab Activity 1 (F)",
+        date: new Date("2025-01-31"),
+        sections: ["Cs", "K", "Rb", "Sr"],
+        subject: "Statistics",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Eng 3 Q3 TGG Quiz 1 (Th)",
+        date: new Date("2025-01-30"),
+        sections: ["Na"],
+        subject: "Statistics",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Eng 3 Q3 TGG Quiz 1 (F)",
+        date: new Date("2025-01-31"),
+        sections: ["Li", "Sr"],
+        subject: "Statistics",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Bio 1 Q3 Quiz 2 (M)",
+        date: new Date("2025-01-27"),
+        sections: ["Rb"],
+        subject: "Biology",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Bio 1 Q3 Quiz 2 (T)",
+        date: new Date("2025-01-28"),
+        sections: ["Cs", "K"],
+        subject: "Biology",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Bio 1 Q3 Quiz 2 (M)",
+        date: new Date("2025-01-27"),
+        sections: ["Rb"],
+        subject: "Biology",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Bio 1 Q3 Quiz 2 (T)",
+        date: new Date("2025-01-28"),
+        sections: ["Cs", "K"],
+        subject: "Biology",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Chem 1 Q3 FA 2 (M)",
+        date: new Date("2025-02-10"),
+        sections: ["Cs","K"],
+        subject: "Chemistry",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Chem 1 Q3 FA 2 (T)",
+        date: new Date("2025-02-11"),
+        sections: ["Rb"],
+        subject: "Chemistry",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Chem 1 Q3 FA 3 (Th)",
+        date: new Date("2025-02-27"),
+        sections: ["Cs","K"],
+        subject: "Chemistry",
+        grade: "9",
+        quarter: "3"
+    },
+    {
+        name: "Chem 1 Q3 FA 3 (F)",
+        date: new Date("2025-02-28"),
+        sections: ["Rb"],
+        subject: "Chemistry",
+        grade: "9",
+        quarter: "3"
+    },
     
 ]
 
