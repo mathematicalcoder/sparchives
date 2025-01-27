@@ -1,24 +1,26 @@
+const domain = "https://mathematicalcoder.github.io/sparchives/public";
+
 // display navbar
 document.getElementById("navbar").innerHTML = `
 <nav class="navbar navbar-expand-sm navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="https://wdprojsrbattungchan.glitch.me/">SPARChives</a>
+    <a class="navbar-brand" href="${domain}">SPARChives</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link disabled" href="https://wdprojsrbattungchan.glitch.me/examcalendar">Exam Calendar</a>
+        <a class="nav-link disabled" href="${domain}/examcalendar">Exam Calendar</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://wdprojsrbattungchan.glitch.me/reviewers">Reviewers</a>
+        <a class="nav-link" href="${domain}/reviewers">Reviewers</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://wdprojsrbattungchan.glitch.me/mocktests">Mock Tests</a>
+        <a class="nav-link" href="${domain}/mocktests">Mock Tests</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="https://wdprojsrbattungchan.glitch.me/gradesheet">Gradesheet</a>
+        <a class="nav-link disabled" href="${domain}/gradesheet">Gradesheet</a>
       </li>
     </ul>
   </div>
