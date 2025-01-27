@@ -238,7 +238,7 @@ th {
 
 nav {
   background-color: #96403C;
-  position: fixed;
+  position: sticky;
   width: 100%;
   top: 0;
 }
