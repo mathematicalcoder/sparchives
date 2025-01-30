@@ -13,12 +13,12 @@ const details = {
     title: "Sampling Distribution of the Sample Proportion",
     description: 
     `This mock test will help you master the concept of the sampling distribution of the sample proportion.
-    Use proper notation when answering probability questions (e.g. <code>P(X>=3.5000)</code> or <code>P(-2.7183<=X<=3.1415)</code>).
+    <br>Use proper notation when answering probability questions (e.g. <code>P(X>=3.5000)</code> or <code>P(-2.7183<=X<=3.1415)</code>).
     If there are two values in the inequality, the lower one must always go first.
-    Express probabilities as percentages with four decimal places. Express other values (even those in notation) with four decimal places.
-    Do NOT use spaces anywhere. An example answer would be <code>P(-2.7183<=X<=3.1415)=0.5772</code>.
-    Do not click Download PDF until further notice.`,
-    timeLimit: 5,
+    <br>Use <code>X</code> for the random variable. Express probabilities as percentages with four decimal places. Express other values (even those in notation) with four decimal places.
+    Do NOT use spaces anywhere. An example answer would be <code>P(-2.7183<=X<=3.1415)=5.7722%</code>.
+    <br>Do not click Download PDF until further notice.`,
+    timeLimit: 10,
     pdfLink: "https://cdn.glitch.global/53819453-3d57-487f-b6e1-86bfc5d1d91f/SPARC%20Example%20Mock%20Test%201.pdf?v=1733967702485"
   }
   
@@ -33,7 +33,7 @@ const details = {
   
   const questions = [
     {
-        points: 1,
+        points: 2,
         question:
         String.raw`The SPARCompute company manufactures laptops specialized in computational intelligence.
         The company manufactured 2000 laptops today, and they claim that $85\%$ of them are working perfectly (no defective parts).
@@ -60,15 +60,15 @@ const details = {
     {
         points: 1,
         question:
-        String.raw`Find the probability that the sample proportion of laptops with no defect is at least the mean sample proportion.`,
-        answer: "",
+        String.raw`Find the probability that the sample proportion of laptops with no defect is at least $90\%$.`,
+        answer: "P(X>=0.9000)=3.0175%",
         type: "text"
     },
     {
         points: 1,
         question:
         String.raw`Find the probability that the sample proportion of laptops with no defect is within a range of $5\%$ around the mean sample distribution.`,
-        answer: "",
+        answer: "P(0.8250<=X<=0.8750)=65.2705%",
         type: "text"
     },
       
