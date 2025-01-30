@@ -12,9 +12,9 @@
 const details = {
     title: "Step Functions",
     description: 
-    `This mock test will help you master the concept of step functions. Do not click Download PDF until further notice.`,
+    `This mock test will help you master the concept of step functions.`,
     timeLimit: 30,
-    pdfLink: ""
+    pdfLink: "https://mathematicalcoder.github.io/sparchives/public/assets/pdf/stepfunc_qns.pdf"
   }
   
   /* QUESTIONS

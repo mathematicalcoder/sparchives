@@ -12,9 +12,9 @@
 const details = {
     title: "Basic Logarithm Speedrun",
     description: 
-    `Evaluate the following logarithms quickly. Type fractions in the format <code>a/b</code> where <code>a</code> and <code>b</code> are relatively prime integers. Do not click Download PDF until further notice.`,
+    `Evaluate the following logarithms quickly. Type fractions in the format <code>a/b</code> where <code>a</code> and <code>b</code> are relatively prime integers.`,
     timeLimit: 2,
-    pdfLink: ""
+    pdfLink: "https://mathematicalcoder.github.io/sparchives/public/assets/pdf/logspeed_qns.pdf"
   }
   
   /* QUESTIONS
