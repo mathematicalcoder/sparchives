@@ -7,7 +7,7 @@ const mockTests = [
     quarter: "1-4",
     date: new Date("2024-12-13"),
     author: "Kaiser Chan",
-    link: "sparchives/public/mocktests/meta/m1/"
+    link: "meta/m1/"
   },
   {
     title: "Step Functions",
@@ -17,7 +17,7 @@ const mockTests = [
     quarter: "3",
     date: new Date("2025-01-20"),
     author: "Kaiser Chan",
-    link: "sparchives/public/mocktests/math3/stepfunc/"
+    link: "math3/stepfunc/"
   },
   
 ]
