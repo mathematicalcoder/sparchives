@@ -39,7 +39,14 @@ const details = {
         The company manufactured 2000 laptops today, and they claim that $85\%$ of them are working perfectly (no defective parts).
         Let's say we take a random sample of 300 laptops and assess if they are indeed working perfectly.
         <br><br>
-        Find the mean of the sampling distribution of the sample proportion in this situation (this does not count as a probability).`,
+        Justify that it is reasonable to approximate the normal model using the sampling distribution of the sample proportion in this situation.
+        (This question will not be graded by the computer.)`,
+        type: "essay"
+    },
+    {
+        points: 1,
+        question:
+        String.raw`Find the mean of the sampling distribution of the sample proportion in this situation (this does not count as a probability).`,
         answer: "0.8500",
         type: "text"
     },

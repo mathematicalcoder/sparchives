@@ -105,7 +105,11 @@ function showQuestions(details, questions, hps) {
   for (let i = 0; i < questions.length; i++) {
     // show input box, question header, and question as a table row
     var element = document.createElement("tr")
-    element.innerHTML = `<td width="200px" id="p${i+1}Status"><input type="${questions[i].type}" id="p${i+1}Answer"></td> <td><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}</td>`
+    if (questions[i].type == "essay") {
+      element.innerHTML = `<td colspan="2"><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><br><span id="p${i+1}Status"><textarea id="p${i+1}Answer"></span></td>`
+    } else {
+      element.innerHTML = `<td width="200px" id="p${i+1}Status"><input type="${questions[i].type}" id="p${i+1}Answer"></td> <td><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}</td>`
+    }
     document.getElementById("questions").appendChild(element)
   }
   document.getElementById("title").innerText = details.title;  // show title
@@ -141,12 +145,18 @@ function checkAnswers(questions) {
   var score = 0;
   for (let i = 0; i < questions.length; i++) {
     var userAnswer = document.getElementById(`p${i+1}Answer`).value;
-    var correctAnswer = questions[i].answer;
-    if (userAnswer.trim().toUpperCase() == correctAnswer.trim().toUpperCase()) {
-      document.getElementById(`p${i+1}Status`).innerHTML = `<span class="success">Correct! (${questions[i].points} point/s)<br>Answer: ${correctAnswer}</span>`  // display correct message
-      score += questions[i].points  // add points
-    } else {
-      document.getElementById(`p${i+1}Status`).innerHTML = `<span class="danger">Incorrect! (0 points)<br>Your Answer: ${userAnswer}<br>Correct Answer: ${correctAnswer}</span>`  // display incorrect message
+    if (questions[i].type == "essay") {
+      score += questions[i].points
+      document.getElementById(`p${i+1}Status`).innerHTML = `<span class="success">This question will not be graded. You are automatically given ${questions[i].points} point/s.<br>Your Answer: ${userAnswer}</span>`
+    }
+    else {
+      var correctAnswer = questions[i].answer;
+      if (userAnswer.trim().toUpperCase() == correctAnswer.trim().toUpperCase()) {
+        document.getElementById(`p${i+1}Status`).innerHTML = `<span class="success">Correct! (${questions[i].points} point/s)<br>Answer: ${correctAnswer}</span>`  // display correct message
+        score += questions[i].points  // add points
+      } else {
+        document.getElementById(`p${i+1}Status`).innerHTML = `<span class="danger">Incorrect! (0 points)<br>Your Answer: ${userAnswer}<br>Correct Answer: ${correctAnswer}</span>`  // display incorrect message
+      }
     }
   }
   
