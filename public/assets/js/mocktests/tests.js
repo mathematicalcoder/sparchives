@@ -29,6 +29,16 @@ const mockTests = [
     author: "Kaiser Chan",
     link: "https://mathematicalcoder.github.io/sparchives/public/mocktests/math3/logspeed/"
   },
+  {
+    title: "Sample Distribution of the Sample Proportion",
+    description: "This mock test will help you master the concept of the sample distribution of the sample proportion.",
+    subject: "Statistics",
+    grade: "9",
+    quarter: "3",
+    date: new Date("2025-01-30"),
+    author: "Kaiser Chan",
+    link: "https://mathematicalcoder.github.io/sparchives/public/mocktests/stat/sdsp/"
+  },
   
 ]
 
