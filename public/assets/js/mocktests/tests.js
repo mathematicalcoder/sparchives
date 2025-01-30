@@ -19,6 +19,16 @@ const mockTests = [
     author: "Kaiser Chan",
     link: "math3/stepfunc/"
   },
+  {
+    title: "Basic Logarithm Speedrun",
+    description: "Can you evaluate the logarithms quickly?",
+    subject: "Mathematics",
+    grade: "9",
+    quarter: "3",
+    date: new Date("2025-01-30"),
+    author: "Kaiser Chan",
+    link: "math3/stepfunc/"
+  },
   
 ]
 
