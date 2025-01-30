@@ -117,7 +117,7 @@ function showQuestions(details, questions, hps) {
   <ol>
     <li>${details.description}</li>
     <li>This is a ${details.timeLimit}-minute, ${questions.length}-question test. The highest possible score is ${hps} points.</li>
-    <li>Answer all questions without any notes, resources, calculators, etc.</li>
+    <li>Answer all questions without any notes, resources, calculators, etc. (Calculators and Jamovi are allowed in Statistics mock tests unless otherwise stated.)</li>
     <li>Answers are not case sensitive and ignore all whitespace before and after the answer. For example, if the correct answer is “<code>apple</code>”, both “<code>ApPlE</code>” and “<code>   apple  </code>” count as correct answers.</li>
     <li>Where applicable, follow the answer format stated in the questions.</li>
   </ol>
