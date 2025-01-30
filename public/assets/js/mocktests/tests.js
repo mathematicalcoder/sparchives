@@ -7,7 +7,7 @@ const mockTests = [
     quarter: "1-4",
     date: new Date("2024-12-13"),
     author: "Kaiser Chan",
-    link: "meta/m1/"
+    link: "https://mathematicalcoder.github.io/sparchives/public/mocktests/meta/m1/"
   },
   {
     title: "Step Functions",
@@ -17,7 +17,7 @@ const mockTests = [
     quarter: "3",
     date: new Date("2025-01-20"),
     author: "Kaiser Chan",
-    link: "math3/stepfunc/"
+    link: "https://mathematicalcoder.github.io/sparchives/public/mocktests/math3/stepfunc/"
   },
   {
     title: "Basic Logarithm Speedrun",
@@ -27,7 +27,7 @@ const mockTests = [
     quarter: "3",
     date: new Date("2025-01-30"),
     author: "Kaiser Chan",
-    link: "math3/logspeed/"
+    link: "https://mathematicalcoder.github.io/sparchives/public/mocktests/math3/logspeed/"
   },
   
 ]
