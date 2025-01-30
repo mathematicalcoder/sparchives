@@ -27,7 +27,7 @@ const mockTests = [
     quarter: "3",
     date: new Date("2025-01-30"),
     author: "Kaiser Chan",
-    link: "math3/stepfunc/"
+    link: "math3/logspeed/"
   },
   
 ]
