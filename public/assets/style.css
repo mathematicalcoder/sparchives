@@ -309,6 +309,10 @@ input {
   width:150px;
 }
 
+textarea {
+  width: inherit;
+}
+
 footer {
   /*max-height:100px;
   background-color: #F25C54;*/
