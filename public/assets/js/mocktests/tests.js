@@ -106,9 +106,9 @@ function showQuestions(details, questions, hps) {
     // show input box, question header, and question as a table row
     var element = document.createElement("tr")
     if (questions[i].type == "essay") {
-      element.innerHTML = `<td colspan="2"><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><span id="p${i+1}Status"><textarea id="p${i+1}Answer" placeholder="Enter answer"></textarea></span></td><br><br><span id="p${i+1}Exp"></span>`
+      element.innerHTML = `<td colspan="2"><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><span id="p${i+1}Status"><textarea id="p${i+1}Answer" placeholder="Enter answer"></textarea></span><br><br><span id="p${i+1}Exp"></span><br></td>`
     } else {
-      element.innerHTML = `<td width="200px" id="p${i+1}Status"><input type="${questions[i].type}" id="p${i+1}Answer" placeholder="Enter answer"></td> <td><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><br><span id="p${i+1}Exp"></span></td>`
+      element.innerHTML = `<td width="200px" id="p${i+1}Status"><input type="${questions[i].type}" id="p${i+1}Answer" placeholder="Enter answer"></td> <td><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><br><span id="p${i+1}Exp"></span><br><br><span id="p${i+1}Exp"></span><br></td>`
     }
     document.getElementById("questions").appendChild(element)
   }
