@@ -108,7 +108,7 @@ function showQuestions(details, questions, hps) {
     if (questions[i].type == "essay") {
       element.innerHTML = `<td colspan="2"><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><span id="p${i+1}Status"><textarea id="p${i+1}Answer" placeholder="Enter answer"></textarea></span></td><br><br><span id="p${i+1}Exp"></span>`
     } else {
-      element.innerHTML = `<td width="200px" id="p${i+1}Status"><input type="${questions[i].type}" id="p${i+1}Answer" placeholder="Enter answer"></td> <td><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><span id="p${i+1}Exp"></span></td>`
+      element.innerHTML = `<td width="200px" id="p${i+1}Status"><input type="${questions[i].type}" id="p${i+1}Answer" placeholder="Enter answer"></td> <td><span class="mtHeading">Question ${i+1} (${questions[i].points} point/s).</span> ${questions[i].question}<br><br><span id="p${i+1}Exp"></span></td>`
     }
     document.getElementById("questions").appendChild(element)
   }
@@ -159,6 +159,7 @@ function checkAnswers(questions) {
       }
     }
     document.getElementById(`p${i+1}Exp`).innerHTML = `<span class="mtHeading">Explanation.</span> ${questions[i].explanation}`
+    MathJax.typeset();
   }
   
   // display score on sidebar
