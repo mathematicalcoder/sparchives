@@ -158,7 +158,7 @@ function checkAnswers(questions) {
         document.getElementById(`p${i+1}Status`).innerHTML = `<span class="danger">Incorrect! (0 points)<br>Your Answer: ${userAnswer}<br>Correct Answer: ${correctAnswer}</span>`  // display incorrect message
       }
     }
-    document.getElementById(`p${i+1}Exp`).innerHTML = `<br><br><span class="mtHeading">Explanation.</span> ${questions[i].explanation}<br>`
+    document.getElementById(`p${i+1}Exp`).innerHTML = `<br><span class="mtHeading">Explanation.</span> ${questions[i].explanation}<br>`
     MathJax.typeset();
   }
   
