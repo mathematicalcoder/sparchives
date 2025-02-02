@@ -276,6 +276,12 @@ span.mtHeading {
   color:#F79D65;
 }
 
+span.mtExp {
+  font-size:14px;
+  font-weight:bold;
+  color:#F79D65;
+}
+
 span.sbLarge {
   font-weight:bold;
   font-size:14px;

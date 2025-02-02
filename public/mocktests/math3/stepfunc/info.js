@@ -53,6 +53,11 @@ const details = {
       question: 
       `What is the largest possible value of $h(x)$ for any real number $x$?`,
       answer: "-3",
+      explanation: String.raw`Note that the range of $\operatorname{sgn}(x)$ is $\{-1,0,1\}$.
+      Now, note that $\operatorname{sgn}(x)$ was dilated horizontally with a scale factor
+      of $\frac12$, then translated $4$ units downard to get $h(x)$. The first transformation does not
+      affect the $y$-coordinate of a point in the function, so the range of $h(x)$ is $\{-1-4,0-4,1-4\}=\{-5,-4,-3\}$,
+      so the largest possible value of $h(x)$ is $\boxed{-3}$.`,
       type: "text"
     },
     {
