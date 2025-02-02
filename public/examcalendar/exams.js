@@ -48,16 +48,16 @@ exams = [
         quarter: "3"
     },
     {
-        name: "Bio 1 Q3 Long Test 1 (M)",
-        date: new Date("2025-02-03"),
+        name: "Bio 1 Q3 Long Test 1 (Th)",
+        date: new Date("2025-02-13"),
         sections: ["Li", "Sr"],
         subject: "Biology",
         grade: "9",
         quarter: "3"
     },
     {
-        name: "Bio 1 Q3 Long Test 1 (T)",
-        date: new Date("2025-02-04"),
+        name: "Bio 1 Q3 Long Test 1 (F)",
+        date: new Date("2025-02-14"),
         sections: ["Na"],
         subject: "Biology",
         grade: "9",
