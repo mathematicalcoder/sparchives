@@ -158,7 +158,12 @@ function checkAnswers(questions) {
         document.getElementById(`p${i+1}Status`).innerHTML = `<span class="danger">Incorrect! (0 points)<br>Your Answer: ${userAnswer}<br>Correct Answer: ${correctAnswer}</span>`  // display incorrect message
       }
     }
-    document.getElementById(`p${i+1}Exp`).innerHTML = `<br><span class="mtHeading">Explanation.</span> ${questions[i].explanation}<br>`
+    if (questions[i].hasOwn("explanation")) {
+      document.getElementById(`p${i+1}Exp`).innerHTML = `<br><span class="mtHeading">Explanation.</span> ${questions[i].explanation}<br>`
+    }
+    else {
+      document.getElementById(`p${i+1}Exp`).innerHTML = `<br><span class="mtHeading">This question does not have an uploaded explanation yet.</span> ${questions[i].explanation}<br>`
+    }
     MathJax.typeset();
   }
   
