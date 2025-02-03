@@ -26,63 +26,17 @@
     <div class="content">
       <h1>Gradesheet</h1>
       <div class="noteThemeOrange">
-        <b>Note:</b> The FA, AA, and SA grades shown to the left are percentages relative to their weights (so their maxima are all 100.00).
+        <b>Note:</b> The component grades shown to the left are percentages relative to their weights (so their maxima are all 100.00).
       </div>
-      <!--<section>
-        <h2>Chemistry 1</h2>
-        <div class="row">
-          <div class="col-md-4">
-            <h3>Formative Assessments</h3>
-            <button>Add FA</button>
-          </div>
-          <div class="col-md-4">
-            <h3>Long Tests</h3>
-            <button>Add LT</button>
-          </div>
-          <div class="col-md-4">
-            <h3>Alternative Assessments</h3>
-            <button>Add AA</button>
-          </div>
-        </div>
-      </section>
+      <select class="form-select" aria-label="Subject selector" style="float:left;width:94%;" id="subjSelect">
+        <option selected>Pick a subject!</option>
+        <option value="Physics 1">Physics 1</option>
+        <option value="Mathematics 3">Mathematics 3</option>
+      </select> <button type="button" class="btn btn-primary" style="float:right; width: 5%;" onclick="initShow();">Select</button>
       <section>
-        <h2>Physics 1</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <h3>Problem Sets</h3>
-            <button>Add PS</button>
-            <h3>Concept Checks</h3>
-            <button>Add CC</button>
-            <h3>Notebook Checks</h3>
-            <button>Add NB</button>
-          </div>
-          <div class="col-md-6">
-            <h3>Long Tests</h3>
-            <button>Add LT</button>
-            <h3>Alternative Assessments and Activities</h3>
-            <button>Add AA</button>
-          </div>
-        </div>
-      </section>-->
-      <section>
-        <h2>Mathematics 3</h2>
-        <div class="row">
-          <div class="col-md-4">
-            <h3>Quizzes</h3>
-            <button>Add Quiz</button>
-          </div>
-          <div class="col-md-4">
-            <h3>Seatworks</h3>
-            <button>Add SW</button>
-            <h3>Homeworks</h3>
-            <button>Add HW</button>
-          </div>
-          <div class="col-md-4">
-            <h3>Examinations</h3>
-            <button>Add Exam</button>
-            <h3>Alternative Assessment</h3>
-            <button>Add AA</button>
-          </div>
+        <h2 id="subjName"></h2>
+        <div id="gradeForm">
+
         </div>
       </section>
     </div>
@@ -98,4 +52,5 @@
   </script>
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script src="https://mathematicalcoder.github.io/sparchives/public/assets/js/script.js"></script>
+  <script src="script.js"></script>
 </html>
