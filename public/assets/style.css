@@ -290,6 +290,7 @@ span.sbLarge {
 span#minutes, span#seconds, span#score, span#hps, span.sbHuge {
   display:inline;
   font-size:20px;
+  font-weight: bold;
 }
 
 button,
