@@ -321,6 +321,10 @@ input {
   width:150px;
 }
 
+input.fullInput {
+  width: 100%;
+}
+
 textarea {
   width: 100%;
 }
