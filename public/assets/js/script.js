@@ -20,7 +20,7 @@ document.getElementById("navbar").innerHTML = `
         <a class="nav-link" href="${domain}/mocktests">Mock Tests</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="${domain}/gradesheet">Gradesheet</a>
+        <a class="nav-link" href="${domain}/gradesheet">Gradesheet</a>
       </li>
     </ul>
   </div>
