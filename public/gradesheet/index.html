@@ -16,27 +16,30 @@
   <div id="navbar">
   </div>
   <body>
-    <div class="sidebar">
-      <span class="defaultBG">Final Grade</span><span class="sbHuge" id="finalGrade">100.00</span>
-      <span class="defaultBG">Formative Assessments</span><span class="sbLarge" id="faGrade">100.00</span>
-      <span class="defaultBG">Alternative Assessments</span><span class="sbLarge" id="aaGrade">100.00</span>
-      <span class="defaultBG">Summative Assessments</span><span class="sbLarge" id=saGrade">100.00</span>
-      
+    <div class="sidebar" id="grades">
+      <span class="defaultBG">Final Grade</span><span class="sbHuge" id="finalGrade">???</span>
     </div>
     <div class="content">
       <h1>Gradesheet</h1>
       <div class="noteThemeOrange">
-        <b>Note:</b> The component grades shown to the left are percentages relative to their weights (so their maxima are all 100.00).
+        <b>Notes:</b>
+        <ul>
+          <li>The component grades shown to the left are percentages relative to their weights (so their maxima are all 100.00).</li>
+          <li>Please save this page for your records. Currently, the website does not store your grades for you.</li>
+        </ul>
       </div>
-      <select class="form-select" aria-label="Subject selector" style="float:left;width:94%;" id="subjSelect">
+      <select class="form-select" aria-label="Subject selector" id="subjSelect">
         <option selected>Pick a subject!</option>
         <option value="Physics 1">Physics 1</option>
         <option value="Mathematics 3">Mathematics 3</option>
-      </select> <button type="button" class="btn btn-primary" style="float:right; width: 5%;" onclick="initShow();">Select</button>
+      </select>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-secondary" onclick="initShow();">Select Subject / Reset Grades</button>
+        <button type="button" class="btn btn-primary" id="computeGrade" onclick="computeGrade();" disabled>Compute Grade</button>
+      </div>
       <section>
         <h2 id="subjName"></h2>
         <div id="gradeForm">
-
         </div>
       </section>
     </div>
