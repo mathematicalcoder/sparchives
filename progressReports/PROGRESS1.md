@@ -1,5 +1,5 @@
-# Project Progress 1
-*_SPARChives_, a Computer Science 3 project by Kaiser Travis Chan (and Schiel Lueone Battung). Last updated on 24 January 2025.*
+# Project Progress
+*_SPARChives_, a Computer Science 3 project by Kaiser Travis Chan (and Schiel Lueone Battung). Last updated on 02 February 2025.*
 
 ## Contents
 1. [Prospective web pages and other plans](#prospective-web-pages-and-other-plans-for-the-rest-of-the-academic-year)
@@ -10,6 +10,22 @@
    - [Reviewers](#reviewers)
    - [Mock tests](#mock-tests)
    - [Exam calendar (new)](#exam-calendar-new)
+  
+## Plan with the ability of saving data
+
+The account system would be created, with the user being able to save their progress in mock tests and grades in the gradesheet. SPARC committee members would also be able to add materials to be shown on the website *without* having to hardcode all of them into the HTML and JS files. This would also imply the use of handlebars templates.
+
+## Current problems
+
+The biggest problem currently is the long process of adding a reviewer or mock test: the contributor has to duplicate the folder of an existing material, then edit the corresponding JS files (one for reviewers and two for mock tests). The aim is to solve this through the addition of handlebars templates as mentioned above.
+
+## Progress as of 05 February 2025
+
+The following pages or meta-pages were added/updated:
+- **[Gradesheet](#gradesheet)**. The gradesheet allows users to compute their grades in a subject given their assessment and homework scores. As of now, it only allows for the grade computation for two subjects, but the plan is to add availability for the grade computation of all subjects covered by SPARC.
+- **[Mock tests](https://mathematicalcoder.github.io/sparchives/public/mocktests/)**. More mock tests were added, along with the functionality of *long answer questions*, which will allow the user to store answers to questions requiring long explanations.
+
+-----
 
 ## Prospective web pages and other plans (for the rest of the academic year)
 ### Addition of more reviewers and mock tests
