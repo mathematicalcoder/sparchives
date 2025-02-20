@@ -306,7 +306,7 @@ textarea {
   font-size:16px;
 }
 
-button:hover {
+button:hover, input[type="submit"] {
   background-color: #F79D65;
   color: white;
 }
