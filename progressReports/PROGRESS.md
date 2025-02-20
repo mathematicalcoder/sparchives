@@ -19,7 +19,7 @@ The biggest problem currently is the long process of adding a reviewer or mock t
 ### Progress as of 05 February 2025
 
 The following pages or meta-pages were added/updated:
-- **[Gradesheet](#gradesheet)**. The gradesheet allows users to compute their grades in a subject given their assessment and homework scores. As of now, it only allows for the grade computation for two subjects, but the plan is to add availability for the grade computation of all subjects covered by SPARC.
+- **[Gradesheet](https://mathematicalcoder.github.io/sparchives/public/gradesheet/)**. The gradesheet allows users to compute their grades in a subject given their assessment and homework scores. As of now, it only allows for the grade computation for two subjects, but the plan is to add availability for the grade computation of all subjects covered by SPARC.
 - **[Mock tests](https://mathematicalcoder.github.io/sparchives/public/mocktests/)**. More mock tests were added, along with the functionality of *long answer questions*, which will allow the user to store answers to questions requiring long explanations.
 
 ## Progress Report: January 2025
