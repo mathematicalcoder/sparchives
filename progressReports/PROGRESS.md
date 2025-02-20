@@ -1,5 +1,5 @@
 # Project Progress Reports
-*_SPARChives_, a Computer Science 3 project by Kaiser Travis Chan (and Schiel Lueone Battung). Last updated on 02 February 2025.*
+*_SPARChives_, a Computer Science 3 project by Kaiser Travis Chan (and Schiel Lueone Battung). Last updated on 20 February 2025.*
 
 ## Progress Report: February 2025
 
