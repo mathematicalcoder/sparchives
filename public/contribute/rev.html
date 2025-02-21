@@ -23,10 +23,24 @@
       </div>
       <section>
         <form id="revContrib" method="POST" action="success.html">
-            <label for="author">Author:</label> <input type="text" id="author"><br>
-            <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
-            <label for="content">Reviewer Content (HTML, content of body only):</label> <textarea type="content" style="height:500px;"></textarea>
-            <input type="submit">
+          <!--<label for="author">Author:</label> <input type="text" id="author"><br>
+          <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
+          <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
+          <label for="content">Reviewer Content (HTML, content of body only):</label> <textarea type="content" style="height:500px;"></textarea>
+          <input type="submit">-->
+          <div class="row">
+            <div class="col-md-1"><b>Author</b></div>
+            <div class="col-md-3"><input type="text" id="author"></div>
+            <div class="col-md-1"><b>Verifier</b></div>
+            <div class="col-md-3"><input type="text" id="verifier"></div>
+            <div class="col-md-1"><b>Date</b></div>
+            <div class="col-md-3"><input type="text" id="date"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"><b>Reviewer Content</b> (HTML, content of body only)</div>
+            <div class="col-md-10"><textarea id="content" style="height:500px;"></textarea></div>
+          </div>
+          <input type="submit">
         </form>
       </section>
     </div>
@@ -43,7 +57,12 @@
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script src="https://mathematicalcoder.github.io/sparchives/public/assets/js/script.js"></script>
   <script src="https://mathematicalcoder.github.io/sparchives/public/assets/js/reviewers/revs.js"></script>
-  <script>
-    display(sortLatest(reviewers), "latest")
-  </script>
+  <style>
+    div.row {
+      margin-top:10px;
+    }
+    input[type="text"], textarea {
+      width:100%;
+    }
+  </style>
 </html>
