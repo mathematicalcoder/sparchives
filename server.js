@@ -42,7 +42,7 @@ app.post('/portal/adminReg/submit', (req, res) => {
 
   if (!name || !section) {
     console.error("At least one required field is missing! ", { name, section });
-    return res/status(400).send("At least one required field is missing!")
+    return res.status(400).send("At least one required field is missing!")
   }
 
   try {
