@@ -23,3 +23,31 @@ app.get('/portal/add/rev', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+// initialize members.js
+const membersFilePath = path.join(__dirname, 'data', 'members.json');
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+  console.log('Creating data directory...');
+  fs.mkdirSync(path.join(__dirname, 'data'));
+}
+if (!fs.existsSync(membersFilePath)) {
+  console.log('Creating members.json file...');
+  fs.writeFileSync(membersFilePath, '{}');
+}
+
+// handle member registration
+app.post('/portal/adminReg/submit', (req, res) => {
+  const { name, section } = req.body;
+  console.log(`Registering ${name} (${section}) as a member...`);
+
+  if (!name || !section) {
+    console.error("At least one required field is missing! ", { name, section });
+    return res/status(400).send("At least one required field is missing!")
+  }
+
+  try {
+    // WIP
+  } catch (error) {
+    // WIP
+  }
+});
