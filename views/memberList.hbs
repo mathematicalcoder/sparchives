@@ -17,22 +17,24 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>SPARC Member Portal</h1>
-      <p>Hello, <b>{{name}}</b>! Here are the pages you have access to:
-      <ul>
-      {{#if member}}
-        <li><b>Member pages</b>
-        <ul>
-          <li><a href="portal/add/rev">Contribute a Reviewer</a></li>
-        </ul></li>
-      {{/if}}
-      {{#if head}}
-        <li><b>Admin pages</b>
-        <ul>
-          <li><a href="portal/adminReg">Member Registration Form</a></li>
-        </ul></li>
-      {{/if}}
-      </ul>
+      <h1>SPARC Member List</h1>
+      <p>The followng are the registered members in SPARChives.</p>
+      <table>
+        <tr>
+          <th>Surname</th>
+          <th>Given Name</th>
+          <th><abbr title="Middle Initial">MI</abbr></th>
+          <th>Section</th>
+        </tr>
+        {{#each members}}
+        <tr>
+          <td>{{this.surname}}</td>
+          <td>{{this.given}}</td>
+          <td>{{this.mi}}</td>
+          <td>{{this.section}}</td>
+        </tr>
+        {{/each}}
+      </table>
       </p>
     </div>
   </body>

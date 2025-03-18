@@ -17,23 +17,27 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>SPARC Member Portal</h1>
-      <p>Hello, <b>{{name}}</b>! Here are the pages you have access to:
-      <ul>
-      {{#if member}}
-        <li><b>Member pages</b>
-        <ul>
-          <li><a href="portal/add/rev">Contribute a Reviewer</a></li>
-        </ul></li>
-      {{/if}}
-      {{#if head}}
-        <li><b>Admin pages</b>
-        <ul>
-          <li><a href="portal/adminReg">Member Registration Form</a></li>
-        </ul></li>
-      {{/if}}
-      </ul>
-      </p>
+      <h1>Member Registration Form (Admin)</h1>
+      <div class="noteThemeRed">
+        Please note that this form is not yet functional.
+      </div>
+      <section>
+        <form id="revContrib" method="POST" action="/portal/adminReg/submit">
+          <!--<label for="author">Author:</label> <input type="text" id="author"><br>
+          <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
+          <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
+          <label for="content">Reviewer Content (HTML, content of body only):</label> <textarea type="content" style="height:500px;"></textarea>
+          <input type="submit">-->
+          <div class="row">
+            <div class="col-md-3"><b>Surname</b> (e.g. Chan)<input type="text" id="surname" name="surname"></div>
+            <div class="col-md-5"><b>Given Name</b> (e.g. Kaiser Travis)<input type="text" id="given" name="given"></div>
+            <div class="col-md-2"><b>Middle Initial</b> (e.g. A)<input type="text" id="mi" name="mi"></div>
+            <div class="col-md-2"><b>Section</b> (e.g. 9-Sr)<input type="text" id="section" name="section"></div>
+          </div>
+          <br>
+          <input type="submit">
+        </form>
+      </section>
     </div>
   </body>
   <footer id="footer" class="container-fluid">
@@ -48,4 +52,12 @@
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script src="https://mathematicalcoder.github.io/sparchives/public/assets/js/script.js"></script>
   <script src="https://mathematicalcoder.github.io/sparchives/public/assets/js/reviewers/revs.js"></script>
+  <style>
+    div.row {
+      margin-top:10px;
+    }
+    input[type="text"], textarea {
+      width:100%;
+    }
+  </style>
 </html>
