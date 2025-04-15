@@ -41,7 +41,7 @@ app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-// initialize members.js
+// initialize members.json
 const membersFilePath = path.join(__dirname, 'data', 'members.json');
 if (!fs.existsSync(path.join(__dirname, 'data'))) {
   console.log('Creating data directory...');
@@ -50,6 +50,17 @@ if (!fs.existsSync(path.join(__dirname, 'data'))) {
 if (!fs.existsSync(membersFilePath)) {
   console.log('Creating members.json file...');
   fs.writeFileSync(membersFilePath, '{}');
+}
+
+// initialize revs.json
+const revsFilePath = path.join(__dirname, 'data', 'revs.json');
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+  console.log('Creating data directory...');
+  fs.mkdirSync(path.join(__dirname, 'data'));
+}
+if (!fs.existsSync(revsFilePath)) {
+  console.log('Creating revs.json file...');
+  fs.writeFileSync(revsFilePath, '{}');
 }
 
 // handle member registration
@@ -74,3 +85,24 @@ app.post('/portal/adminReg/submit', (req, res) => {
     res.status(500).send('Error registering the member!');
   }
 });
+
+// handle reviewer submission
+app.post('/portal/add/rev/submit', (req, res) => {
+  const { author, verifier, date, title, content } = req.body;
+  console.log(`Registering the reviewer ${title} by ${author}...`);
+
+  if (!author || !verifier || !date || !title || !content) {
+    console.error("At least one required field is missing! ", { surname, given, mi, section });
+    return res.status(400).send("At least one required field is missing!")
+  }
+
+  try {
+    const revs = JSON.parse(fs.readFileSync(revsFilePath));
+    revs[title] = {author, verifier, date, title, content};
+    fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
+    res.redirect('/portal/add/rev');
+  } catch(error) {
+    console.error(error);
+    res.status(500).send('Error registering the member!');
+  }
+})

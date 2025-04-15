@@ -22,7 +22,7 @@
         Please note that this form is not yet functional.
       </div>
       <section>
-        <form id="revContrib" method="POST" action="success.html">
+        <form id="revContrib" method="POST" action="/portal/add/rev/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
@@ -30,19 +30,19 @@
           <input type="submit">-->
           <div class="row">
             <div class="col-md-1"><b>Author</b></div>
-            <div class="col-md-3"><input type="text" id="author"></div>
+            <div class="col-md-3"><input type="text" id="author" name="author"></div>
             <div class="col-md-1"><b>Verifier</b></div>
-            <div class="col-md-3"><input type="text" id="verifier"></div>
+            <div class="col-md-3"><input type="text" id="verifier" name="verifier"></div>
             <div class="col-md-1"><b>Date</b></div>
-            <div class="col-md-3"><input type="date" id="date"></div>
+            <div class="col-md-3"><input type="date" id="date" name="date"></div>
           </div>
           <div class="row">
             <div class="col-md-2"><b>Title</b></div>
-            <div class="col-md-10"><input type="text" id="title"></div>
+            <div class="col-md-10"><input type="text" id="title" name="title"></div>
           </div>
           <div class="row">
             <div class="col-md-2"><b>Reviewer Content</b> (HTML, content of body only)</div>
-            <div class="col-md-10"><textarea id="content" style="height:500px;"></textarea></div>
+            <div class="col-md-10"><textarea id="content" style="height:500px;" name="content"></textarea></div>
           </div>
           <input type="submit">
         </form>
