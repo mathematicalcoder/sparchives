@@ -295,7 +295,8 @@ span#minutes, span#seconds, span#score, span#hps, span.sbHuge {
 
 button,
 input,
-textarea {
+textarea,
+select {
   padding: 5px;
   background-color: white;
   border: 1px solid #F79D65;
@@ -317,7 +318,7 @@ input, textarea {
   padding: 5px;
 }
 
-input {
+input, select {
   width:150px;
 }
 

@@ -18,9 +18,6 @@
   <body>
     <div class="container-lg p-3">
       <h1>Contribute a Reviewer</h1>
-      <div class="noteThemeRed">
-        Please note that this form is not yet functional.
-      </div>
       <section>
         <form id="revContrib" method="POST" action="/portal/add/rev/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
@@ -29,12 +26,17 @@
           <label for="content">Reviewer Content (HTML, content of body only):</label> <textarea type="content" style="height:500px;"></textarea>
           <input type="submit">-->
           <div class="row">
-            <div class="col-md-1"><b>Author</b></div>
-            <div class="col-md-3"><input type="text" id="author" name="author"></div>
-            <div class="col-md-1"><b>Verifier</b></div>
-            <div class="col-md-3"><input type="text" id="verifier" name="verifier"></div>
+            <div class="col-md-1"><b>Author/s</b></div>
+            <div class="col-md-2"><input type="text" id="author" name="author"></div>
+            <div class="col-md-1"><b>Verifier/s</b></div>
+            <div class="col-md-2"><input type="text" id="verifier" name="verifier"></div>
             <div class="col-md-1"><b>Date</b></div>
-            <div class="col-md-3"><input type="date" id="date" name="date"></div>
+            <div class="col-md-2"><input type="date" id="date" name="date"></div>
+            <div class="col-md-1"><b>Course</b></div>
+            <div class="col-md-2"><select name="course">
+              <option value="Mathematics 3">Mathematics 3</option>
+              <option value="Statistics 1">Statistics 1</option>
+            </select></div>
           </div>
           <div class="row">
             <div class="col-md-2"><b>Title</b></div>

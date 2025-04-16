@@ -6,6 +6,8 @@
   - mock test (printer friendly version)
     - this can instead be auto-generated with CSS (hide unnecessary components like the sidebar and input boxes)
 - Create backend for reviewer contributions
+  - **(DONE)** form to JSON file storing content
+    - downside: resulting JSON file might be too long
   - Reviewer URLs will be auto-generated using GET, e.g. /reviewer?id=1
   - this will require IDs of reviewers to be used, either:
     - the index of the reviewer in the array
