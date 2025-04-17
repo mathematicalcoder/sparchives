@@ -17,25 +17,9 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>Reviewers</h1>
-      <table>
-        <tr>
-          <th>Title</th>
-          <th>Date</th>
-          <th>Course</th>
-          <th>Author/s</th>
-          <th>Verifier/s</th>
-        </tr>
-        {{#each revs}}
-        <tr>
-          <td><a href="/reviewer?title={{this.title}}">{{this.title}}</a></td>
-          <td>{{this.date}}</td>
-          <td>{{this.course}}</td>
-          <td>{{this.author}}</td>
-          <td>{{this.verifier}}</td>
-        </tr>
-        {{/each}}
-      </table>
+      <h1>{{title}}</h1>
+      <p class="lead">{{course}} | By {{author}} | Verified by {{verifier}} | Written on {{date}}</p>
+      <p>{{content}}</p>
     </div>
   </body>
   <footer id="footer" class="container-fluid">

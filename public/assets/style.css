@@ -312,7 +312,7 @@ button:hover, input[type="submit"]:hover {
   color: white;
 }
 
-input, textarea {
+input, textarea, select {
   color: black;
   /*width: 100%;*/
   padding: 5px;

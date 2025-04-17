@@ -8,10 +8,11 @@
 - Create backend for reviewer contributions
   - **(DONE)** form to JSON file storing content
     - downside: resulting JSON file might be too long
-  - Reviewer URLs will be auto-generated using GET, e.g. /reviewer?id=1
-  - this will require IDs of reviewers to be used, either:
-    - the index of the reviewer in the array
-    - the time it was sent to the server (unix timestamp)
+  - **(DONE)** Reviewer URLs will be auto-generated using GET, e.g. /reviewer?id=1
+    - ~~this will require IDs of reviewers to be used, either:~~
+      - ~~the index of the reviewer in the array~~
+      - ~~the time it was sent to the server (unix timestamp)~~
+  - ability to edit and delete reviewers
 - Create mock test writing interface
   - similar to MathDash contest writing interface
   - inputs for the following:
