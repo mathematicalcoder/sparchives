@@ -70,7 +70,7 @@ All current pages in SPARChives will be converted to database format. A database
 Mock tests will follow a similar format, with questions being added using an "Add Question" button and containing the following:
 ```js
 "q1": {
-  "type": text-string,   // can be "multipleChoice", "shortAnswer", or "essay"
+  "type": text-string,   // can be "radio", "checkbox", "text", "number", or "essay"
   "statement": text-string,
   "points": number,
   "answer": text-string,
