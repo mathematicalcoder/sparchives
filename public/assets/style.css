@@ -296,7 +296,8 @@ span#minutes, span#seconds, span#score, span#hps, span.sbHuge {
 button,
 input,
 textarea,
-select {
+select,
+.window {
   padding: 5px;
   background-color: white;
   border: 1px solid #F79D65;
@@ -312,7 +313,7 @@ button:hover, input[type="submit"]:hover {
   color: white;
 }
 
-input, textarea, select {
+input, textarea, select, .window {
   color: black;
   /*width: 100%;*/
   padding: 5px;
@@ -322,12 +323,18 @@ input, select {
   width:150px;
 }
 
-input.fullInput {
+input.fullInput, textarea, .window {
   width: 100%;
 }
 
-textarea {
-  width: 100%;
+textarea.codeTA {
+  height: 500px;
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", 
+  "Ubuntu Mono", "Source Code Pro","Fira Mono", "Droid Sans Mono", "Consolas", "Courier New", monospace;
+}
+
+.window {
+  overflow: scroll;
 }
 
 footer {

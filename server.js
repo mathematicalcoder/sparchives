@@ -108,7 +108,7 @@ app.post('/portal/add/rev/submit', (req, res) => {
 })
 
 // reviewers page
-app.get('/revs', (req, res) => {
+app.get('/reviewers', (req, res) => {
   try {
     const reviewers = JSON.parse(fs.readFileSync(revsFilePath));
     const revList = Object.values(reviewers);
