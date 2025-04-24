@@ -1,4 +1,4 @@
-const domain = "https://mathematicalcoder.github.io/sparchives/public";
+const domain = "";
 
 // display navbar
 document.getElementById("navbar").innerHTML = `

@@ -7,7 +7,7 @@
     <meta name="description" content="The website for SPARC 2028. [student-led organization under the PSHS-MC, Philippines]" />
     <meta name="author" content="Chan, KTC and Battung, SLMB" />
     <meta name="revised" content="11-15-2024" />
-    <title>SPARC Member Portal</title>
+    <title>Reviewers | PSHS-MC SPARC 2028</title>
     <link href="/assets/style.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/53819453-3d57-487f-b6e1-86bfc5d1d91f/favicon.ico?v=1734621443858">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,23 +17,25 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>SPARC Member Portal</h1>
-      <p>Hello, <b>{{name}}</b>! Here are the pages you have access to:
-      <ul>
-      {{#if member}}
-        <li><b>Member pages</b>
-        <ul>
-          <li><a href="/portal/add/rev">Contribute a Reviewer</a></li>
-        </ul></li>
-      {{/if}}
-      {{#if head}}
-        <li><b>Admin pages</b>
-        <ul>
-          <li><a href="/portal/adminReg">Member Registration Form</a></li>
-        </ul></li>
-      {{/if}}
-      </ul>
-      </p>
+      <h1>Reviewers</h1>
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Course</th>
+          <th>Author/s</th>
+          <th>Verifier/s</th>
+        </tr>
+        {{#each revs}}
+        <tr>
+          <td><a href="/reviewer?title={{this.title}}">{{this.title}}</a></td>
+          <td>{{this.date}}</td>
+          <td>{{this.course}}</td>
+          <td>{{this.author}}</td>
+          <td>{{this.verifier}}</td>
+        </tr>
+        {{/each}}
+      </table>
     </div>
   </body>
   <footer id="footer" class="container-fluid">
@@ -47,4 +49,12 @@
   </script>
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script src="/assets/js/script.js"></script>
+  <style>
+    div.row {
+      margin-top:10px;
+    }
+    input[type="text"], textarea {
+      width:100%;
+    }
+  </style>
 </html>

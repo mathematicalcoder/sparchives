@@ -27,7 +27,7 @@ on student utilities (see secondary functions).
     <li>JS incorporation: Using a similar javascript programmed by Kaiser Travis Chan for the prototype, the test format (exclusive to a single link) is such so it will be very similar to an online test or gform with fill in the blank options. 
 The needed inputs are then processed and determined if right or wrong by the system. The website also makes the user opt for a timed version where it will automatically return the score of answered items once the time has ellapsed</li>
   </ul>
-  <li>Math practice (randomized problems from a database of "templates")</li>
+  <li>Math practice (randomized problems from a database of "templates") -- **discontinued**</li>
   <ul>
     <li>JS incorporation: the computer will randomly select problem templates and generate numbers to fit those templates. It will also check the user's answers and track their progress.</li>
   </ul>
@@ -50,6 +50,45 @@ as well as a + and - (to increase or decrease). User can also has an option to c
   <li> The gradesheet function is also a utility function. Using similar UI the the GWA calc, a main bar (table) will represent a certain course. 
   It is up to the user to freely divide the table and add their scores in fractions. Multiplying them with the set percentages for the requirement type, the program will return the final score.</li>
 </ul>
+
+<hr>
+
+### Uses of JSON, databases, and/or storage
+All current pages in SPARChives will be converted to database format. A database structure for reviewers is already underway, with a form to add reviewers in HTML format (with LaTeX support and custom SPARC CSS classes) and a page to view reviewers using GET. Reviewer update and deletion functions will still be made. Each reviewer contains the following:
+
+```js
+"reviewerName": {
+  "author": text-string,
+  "verifier": text-string,
+  "date": date,
+  "course": text-string,
+  "title": text-string,
+  "content": text-string
+}
+```
+
+Mock tests will follow a similar format, with questions being added using an "Add Question" button and containing the following:
+```js
+"q1": {
+  "type": text-string,   // can be "radio", "checkbox", "text", "number", or "essay"
+  "statement": text-string,
+  "points": number,
+  "answer": text-string,
+  "explanation": text-string
+}
+```
+The mock test would then contain the following data:
+```js
+"mockTestName": {
+  "description": text-string;
+  "instructions": text-string;   // additional instructions to add to the default set of instructions
+  "timeLimit": number;   // in seconds
+  "questions": array;
+  "pdf": pdf-file;   // [OPTIONAL] so the user can print/download the questions
+}
+```
+
+<hr>
 
 <h3>
   Kindly refer to <a href="https://www.canva.com/design/DAGVaV8y1DY/JaB3C07QIKqZ-RQtxEz4FQ/edit">this canva link</a> for the wireframe designs.

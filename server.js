@@ -45,7 +45,7 @@ app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-// initialize members.js
+// initialize members.json
 const membersFilePath = path.join(__dirname, 'data', 'members.json');
 if (!fs.existsSync(path.join(__dirname, 'data'))) {
   console.log('Creating data directory...');
@@ -54,6 +54,17 @@ if (!fs.existsSync(path.join(__dirname, 'data'))) {
 if (!fs.existsSync(membersFilePath)) {
   console.log('Creating members.json file...');
   fs.writeFileSync(membersFilePath, '{}');
+}
+
+// initialize revs.json
+const revsFilePath = path.join(__dirname, 'data', 'revs.json');
+if (!fs.existsSync(path.join(__dirname, 'data'))) {
+  console.log('Creating data directory...');
+  fs.mkdirSync(path.join(__dirname, 'data'));
+}
+if (!fs.existsSync(revsFilePath)) {
+  console.log('Creating revs.json file...');
+  fs.writeFileSync(revsFilePath, '{}');
 }
 
 // handle member registration
@@ -79,4 +90,52 @@ app.post('/portal/adminReg/submit', (req, res) => {
   }
 });
 
-// add request form handling later
+// handle reviewer submission
+app.post('/portal/add/rev/submit', (req, res) => {
+  const { author, verifier, date, course, title, content } = req.body;
+  console.log(`Registering the reviewer ${title} by ${author}...`);
+
+  if (!author || !verifier || !date || !title || !content) {
+    console.error("At least one required field is missing! ", { author, verifier, date, course, title, content });
+    return res.status(400).send("At least one required field is missing!")
+  }
+
+  try {
+    const revs = JSON.parse(fs.readFileSync(revsFilePath));
+    revs[title] = {author, verifier, date, course, title, content};
+    fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
+    res.redirect('/portal/add/rev');
+  } catch(error) {
+    console.error(error);
+    res.status(500).send('Error registering the reviewer!');
+  }
+})
+
+// reviewers page
+app.get('/reviewers', (req, res) => {
+  try {
+    const reviewers = JSON.parse(fs.readFileSync(revsFilePath));
+    const revList = Object.values(reviewers);
+    res.render('revs.hbs', {revs: revList});
+  } catch (error) {
+    res.status(500).send('Error loading member list!');
+  }
+});
+
+// specific reviewer page
+app.get('/reviewer', (req, res) => {
+  const { title } = req.query;
+  const reviewers = JSON.parse(fs.readFileSync(revsFilePath));
+  const rev = reviewers[title];
+  const author = rev["author"];
+  const verifier = rev["verifier"];
+  const date = rev["date"];
+  const course = rev["course"];
+  const content = rev["content"];
+  try {
+    res.render('reviewer.hbs', {author: author, verifier: verifier, date: date, course: course, title: title, content: content});
+  } catch(error) {
+    console.error("Reviewer not found! ", { author, verifier, date, course, title, content });
+    return res.status(404).send('Reviewer not found!');
+  }
+})
