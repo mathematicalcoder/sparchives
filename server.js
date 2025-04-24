@@ -27,6 +27,10 @@ app.get('/portal/adminReg', (req, res) => {
   res.render('adminMemberReg.hbs');
 });
 
+app.get('/portal/requestForm', (req, res) => {
+  res.render('requestForm.hbs');
+});
+
 app.get('/portal/members', (req, res) => {
   try {
     const members = JSON.parse(fs.readFileSync(membersFilePath));
@@ -74,3 +78,5 @@ app.post('/portal/adminReg/submit', (req, res) => {
     res.status(500).send('Error registering the member!');
   }
 });
+
+// add request form handling later
