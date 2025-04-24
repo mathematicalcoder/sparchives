@@ -16,27 +16,23 @@
   <div id="navbar">
   </div>
   <body>
-    <div class="container-lg p-3">
-      <h1>Reviewers</h1>
-      <table>
-        <tr>
-          <th>Title</th>
-          <th>Date</th>
-          <th>Course</th>
-          <th>Author/s</th>
-          <th>Verifier/s</th>
-        </tr>
-        {{#each revs}}
-        <tr>
-          <td><a href="/reviewer?title={{this.title}}">{{this.title}}</a></td>
-          <td>{{this.date}}</td>
-          <td>{{this.course}}</td>
-          <td>{{this.author}}</td>
-          <td>{{this.verifier}}</td>
-        </tr>
-        {{/each}}
-      </table>
-    </div>
+<div class="container-lg p-3">
+<h1>Reviewers</h1>
+<div class="col-md-4">
+{{#each revs}}
+<div class="card">
+  <!--<img src="..." class="card-img-top" alt="...">-->
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{this.date}}</h6>
+    <p class="card-text"><span class="badge rounded-pill bg-secondary">{{this.course}}</span></p>
+    <p class="card-text">{{this.description}}</p>
+    <a href="./reviewer?title={{this.title}}" class="btn btn-primary">Open Reviewer</a>
+  </div>
+</div>
+{{/each}}
+</div>
+</div>
   </body>
   <footer id="footer" class="container-fluid">
   </footer>

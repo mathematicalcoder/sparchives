@@ -92,17 +92,17 @@ app.post('/portal/adminReg/submit', (req, res) => {
 
 // handle reviewer submission
 app.post('/portal/add/rev/submit', (req, res) => {
-  const { author, verifier, date, course, title, content } = req.body;
+  const { author, verifier, date, course, title, description, content } = req.body;
   console.log(`Registering the reviewer ${title} by ${author}...`);
 
   if (!author || !verifier || !date || !title || !content) {
-    console.error("At least one required field is missing! ", { author, verifier, date, course, title, content });
+    console.error("At least one required field is missing! ", { author, verifier, date, course, title, description, content });
     return res.status(400).send("At least one required field is missing!")
   }
 
   try {
     const revs = JSON.parse(fs.readFileSync(revsFilePath));
-    revs[title] = {author, verifier, date, course, title, content};
+    revs[title] = {author, verifier, date, course, title, description, content};
     fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
     res.redirect('/portal/add/rev');
   } catch(error) {
