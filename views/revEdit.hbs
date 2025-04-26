@@ -19,7 +19,7 @@
     <div class="container-lg p-3">
       <h1>Edit reviewer: {{title}}</h1>
       <section>
-        <form id="revEdit" method="POST" action="/portal/edit/rev/submit">
+        <form id="revEdit" method="POST" action="/portal/rev/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
@@ -27,11 +27,11 @@
           <input type="submit">-->
           <div class="row">
             <div class="col-md-1"><b>Author/s</b></div>
-            <div class="col-md-2"><input type="text" id="author" name="author">{{author}}</div>
+            <div class="col-md-2"><input type="text" id="author" name="author" value="{{author}}"></div>
             <div class="col-md-1"><b>Verifier/s</b></div>
-            <div class="col-md-2"><input type="text" id="verifier" name="verifier">{{verifier}}</div>
+            <div class="col-md-2"><input type="text" id="verifier" name="verifier" value="{{verifier}}"></div>
             <div class="col-md-1"><b>Date</b></div>
-            <div class="col-md-2"><input type="date" id="date" name="date">{{date}}</div>
+            <div class="col-md-2"><input type="date" id="date" name="date" value="{{date}}"></div>
             <div class="col-md-1"><b>Course</b></div>
             <div class="col-md-2"><select name="course" selected="{{course}}">
               <option value="Meta">Meta</option>
@@ -41,12 +41,12 @@
           </div>
           <div class="row">
             <div class="col-md-1"><b>Title</b></div>
-            <div class="col-md-11"><input type="text" id="title" name="title">{{title}}</div>
+            <div class="col-md-11"><input type="text" id="title" name="title" value="{{title}}"></div>
           </div>
           <div class="row">
             <div class="col-md-6"><b>Reviewer Content</b> (HTML, content of body only)
             <textarea id="content" class="codeTA" name="content" onchange="document.getElementById('preview').innerHTML = document.getElementById('content').value; MathJax.typeset();">{{content}}</textarea></div>
-            <div class="col-md-6"><b>Preview</b> (click outside the input box to view)
+            <div class="col-md-6"><b>Preview</b> (click outside the input to view; updates when content is changed)
             <div class="window" id="preview" style="height:500px;"></div></div>
           </div>
           <input type="submit">
@@ -69,7 +69,7 @@
     div.row {
       margin-top:10px;
     }
-    input[type="text"], textarea {
+    input[type="text"], textarea, select {
       width:100%;
     }
   </style>

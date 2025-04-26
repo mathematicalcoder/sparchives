@@ -19,15 +19,21 @@ app.get('/portal', (req, res) => {
     res.render('portalHome.hbs', {name: "Kaiser Chan", member: true, head: true});
   });
 
-app.get('/portal/add/rev', (req, res) => {
+app.get('/portal/rev/add', (req, res) => {
     res.render('revContrib.hbs');
 });
 
-app.get('/portal/edit/rev', (req, res) => {
+app.get('/portal/rev/edit', (req, res) => {
   const { title } = req.query;
   const revs = JSON.parse(fs.readFileSync(revsFilePath));
-  const reviewer = revs.title;
+  const reviewer = revs[title];
   res.render('revEdit.hbs', {title: title, author: reviewer.author, verifier: reviewer.verifier, date: reviewer.date, course: reviewer.course, content: reviewer.content});
+});
+
+app.get('/portal/rev/editSelect', (req, res) => {
+  const { title } = req.query;
+  const revs = JSON.parse(fs.readFileSync(revsFilePath));
+  res.render('revEditSelect.hbs', {reviewers: revs});
 });
 
 app.get('/portal/adminReg', (req, res) => {
@@ -98,7 +104,7 @@ app.post('/portal/adminReg/submit', (req, res) => {
 });
 
 // handle reviewer submission
-app.post('/portal/add/rev/submit', (req, res) => {
+app.post('/portal/rev/submit', (req, res) => {
   const { author, verifier, date, course, title, description, content } = req.body;
   console.log(`Registering the reviewer ${title} by ${author}...`);
 
