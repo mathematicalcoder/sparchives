@@ -14,6 +14,44 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Define a route
+app.get('/portal', (req, res) => {
+    res.render('portalHome.hbs', {name: "Kaiser Chan", member: true, head: true});
+  });
+
+app.get('/portal/add/rev', (req, res) => {
+    res.render('revContrib.hbs');
+});
+
+app.get('/portal/edit/rev', (req, res) => {
+  const { title } = req.query;
+  const revs = JSON.parse(fs.readFileSync(revsFilePath));
+  const reviewer = revs.title;
+  res.render('revEdit.hbs', {title: title, author: reviewer.author, verifier: reviewer.verifier, date: reviewer.date, course: reviewer.course, content: reviewer.content});
+});
+
+app.get('/portal/adminReg', (req, res) => {
+  res.render('adminMemberReg.hbs');
+});
+
+app.get('/portal/requestForm', (req, res) => {
+  res.render('requestForm.hbs');
+});
+
+app.get('/portal/members', (req, res) => {
+  try {
+    const members = JSON.parse(fs.readFileSync(membersFilePath));
+    const memberList = Object.values(members);
+    res.render('memberList.hbs', {members: memberList});
+  } catch (error) {
+    res.status(500).send('Error loading member list!');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
+
 // initialize members.json
 const membersFilePath = path.join(__dirname, 'data', 'members.json');
 if (!fs.existsSync(path.join(__dirname, 'data'))) {
@@ -35,40 +73,6 @@ if (!fs.existsSync(revsFilePath)) {
   console.log('Creating revs.json file...');
   fs.writeFileSync(revsFilePath, '{}');
 }
-
-// Define a route
-app.get('/portal', (req, res) => {
-    res.render('portalHome.hbs', {name: "Kaiser Chan", member: true, head: true});
-  });
-
-  app.get('/portal/add/rev', (req, res) => {
-    res.render('revContrib.hbs');
-});
-
-app.get('/portal/edit/rev', (req, res) => {
-  const { title } = req.query;
-  const revs = JSON.parse(fs.readFileSync(revsFilePath));
-  const reviewer = revs.title;
-  res.render('revEdit.hbs', {title: title, author: reviewer.author, verifier: reviewer.verifier, date: reviewer.date, course: reviewer.course, content: reviewer.content});
-});
-
-app.get('/portal/adminReg', (req, res) => {
-  res.render('adminMemberReg.hbs');
-});
-
-app.get('/portal/members', (req, res) => {
-  try {
-    const members = JSON.parse(fs.readFileSync(membersFilePath));
-    const memberList = Object.values(members);
-    res.render('memberList.hbs', {members: memberList});
-  } catch (error) {
-    res.status(500).send('Error loading member list!');
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
 
 // handle member registration
 app.post('/portal/adminReg/submit', (req, res) => {
@@ -95,17 +99,17 @@ app.post('/portal/adminReg/submit', (req, res) => {
 
 // handle reviewer submission
 app.post('/portal/add/rev/submit', (req, res) => {
-  const { author, verifier, date, course, title, content } = req.body;
+  const { author, verifier, date, course, title, description, content } = req.body;
   console.log(`Registering the reviewer ${title} by ${author}...`);
 
   if (!author || !verifier || !date || !title || !content) {
-    console.error("At least one required field is missing! ", { author, verifier, date, course, title, content });
+    console.error("At least one required field is missing! ", { author, verifier, date, course, title, description, content });
     return res.status(400).send("At least one required field is missing!")
   }
 
   try {
     const revs = JSON.parse(fs.readFileSync(revsFilePath));
-    revs[title] = {author, verifier, date, course, title, content};
+    revs[title] = {author, verifier, date, course, title, description, content};
     fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
     res.redirect('/portal');
   } catch(error) {
