@@ -14,33 +14,6 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Define a route
-app.get('/portal', (req, res) => {
-    res.render('portalHome.hbs', {name: "Kaiser Chan", member: true, head: true});
-  });
-
-app.get('/portal/add/rev', (req, res) => {
-    res.render('revContrib.hbs');
-});
-
-app.get('/portal/adminReg', (req, res) => {
-  res.render('adminMemberReg.hbs');
-});
-
-app.get('/portal/members', (req, res) => {
-  try {
-    const members = JSON.parse(fs.readFileSync(membersFilePath));
-    const memberList = Object.values(members);
-    res.render('memberList.hbs', {members: memberList});
-  } catch (error) {
-    res.status(500).send('Error loading member list!');
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
-
 // initialize members.json
 const membersFilePath = path.join(__dirname, 'data', 'members.json');
 if (!fs.existsSync(path.join(__dirname, 'data'))) {
@@ -62,6 +35,40 @@ if (!fs.existsSync(revsFilePath)) {
   console.log('Creating revs.json file...');
   fs.writeFileSync(revsFilePath, '{}');
 }
+
+// Define a route
+app.get('/portal', (req, res) => {
+    res.render('portalHome.hbs', {name: "Kaiser Chan", member: true, head: true});
+  });
+
+  app.get('/portal/add/rev', (req, res) => {
+    res.render('revContrib.hbs');
+});
+
+app.get('/portal/edit/rev', (req, res) => {
+  const { title } = req.query;
+  const revs = JSON.parse(fs.readFileSync(revsFilePath));
+  const reviewer = revs.title;
+  res.render('revEdit.hbs', {title: title, author: reviewer.author, verifier: reviewer.verifier, date: reviewer.date, course: reviewer.course, content: reviewer.content});
+});
+
+app.get('/portal/adminReg', (req, res) => {
+  res.render('adminMemberReg.hbs');
+});
+
+app.get('/portal/members', (req, res) => {
+  try {
+    const members = JSON.parse(fs.readFileSync(membersFilePath));
+    const memberList = Object.values(members);
+    res.render('memberList.hbs', {members: memberList});
+  } catch (error) {
+    res.status(500).send('Error loading member list!');
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
 
 // handle member registration
 app.post('/portal/adminReg/submit', (req, res) => {
@@ -100,7 +107,7 @@ app.post('/portal/add/rev/submit', (req, res) => {
     const revs = JSON.parse(fs.readFileSync(revsFilePath));
     revs[title] = {author, verifier, date, course, title, content};
     fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
-    res.redirect('/portal/add/rev');
+    res.redirect('/portal');
   } catch(error) {
     console.error(error);
     res.status(500).send('Error registering the reviewer!');
