@@ -36,6 +36,12 @@ app.get('/portal/rev/editSelect', (req, res) => {
   res.render('revEditSelect.hbs', {reviewers: revs});
 });
 
+app.get('/portal/rev/delete', (req, res) => {
+  const { title } = req.query;
+  const revs = JSON.parse(fs.readFileSync(revsFilePath));
+  res.render('revDelete.hbs', {reviewers: revs});
+});
+
 app.get('/portal/adminReg', (req, res) => {
   res.render('adminMemberReg.hbs');
 });
@@ -104,7 +110,7 @@ app.post('/portal/adminReg/submit', (req, res) => {
 });
 
 // handle reviewer submission
-app.post('/portal/rev/submit', (req, res) => {
+app.post('/portal/rev/add/submit', (req, res) => {
   const { author, verifier, date, course, title, description, content } = req.body;
   console.log(`Registering the reviewer ${title} by ${author}...`);
 
@@ -121,6 +127,49 @@ app.post('/portal/rev/submit', (req, res) => {
   } catch(error) {
     console.error(error);
     res.status(500).send('Error registering the reviewer!');
+  }
+})
+
+// handle reviewer edition
+app.post('/portal/rev/edit/submit', (req, res) => {
+  const { author, verifier, date, course, ogTitle, title, description, content } = req.body;
+  console.log(`Editing the reviewer ${ogTitle} by ${author}...`);
+
+  if (!author || !verifier || !date || !title || !content) {
+    console.error("At least one required field is missing! ", { author, verifier, date, course, ogTitle, title, description, content });
+    return res.status(400).send("At least one required field is missing!")
+  }
+
+  try {
+    const revs = JSON.parse(fs.readFileSync(revsFilePath));
+    delete revs[ogTitle];
+    revs[title] = {author, verifier, date, course, title, description, content};
+    fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
+    res.redirect('/portal');
+  } catch(error) {
+    console.error(error);
+    res.status(500).send('Error editing the reviewer!');
+  }
+})
+
+// handle reviewer deletion
+app.post('/portal/rev/delete/submit', (req, res) => {
+  const { title } = req.body;
+  console.log(`Deleting the reviewer ${title}...`);
+
+  if (!title) {
+    console.error("At least one required field is missing! ", { title });
+    return res.status(400).send("At least one required field is missing!")
+  }
+
+  try {
+    const revs = JSON.parse(fs.readFileSync(revsFilePath));
+    delete revs[title];
+    fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
+    res.redirect('/portal');
+  } catch(error) {
+    console.error(error);
+    res.status(500).send('Error deleting the reviewer!');
   }
 })
 

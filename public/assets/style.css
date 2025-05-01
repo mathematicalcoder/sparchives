@@ -327,6 +327,10 @@ input.fullInput, textarea, .window {
   width: 100%;
 }
 
+input[type="radio"], input[type="checkbox"] {
+  width: auto;
+}
+
 textarea.codeTA {
   height: 500px;
   font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", 
