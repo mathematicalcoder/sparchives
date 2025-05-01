@@ -17,41 +17,26 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>Contribute a Reviewer</h1>
+      <h1>Delete reviewer</h1>
       <section>
-        <form id="revContrib" method="POST" action="/portal/rev/add/submit">
+        <form id="revEdit" method="POST" action="/portal/rev/delete/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
           <label for="content">Reviewer Content (HTML, content of body only):</label> <textarea type="content" style="height:500px;"></textarea>
           <input type="submit">-->
           <div class="row">
-            <div class="col-md-1"><b>Author/s</b></div>
-            <div class="col-md-2"><input type="text" id="author" name="author"></div>
-            <div class="col-md-1"><b>Verifier/s</b></div>
-            <div class="col-md-2"><input type="text" id="verifier" name="verifier"></div>
-            <div class="col-md-1"><b>Date</b></div>
-            <div class="col-md-2"><input type="date" id="date" name="date"></div>
-            <div class="col-md-1"><b>Course</b></div>
-            <div class="col-md-2"><select name="course">
-              <option value="Meta">Meta</option>
-              <option value="Mathematics 3">Mathematics 3</option>
-              <option value="Statistics 1">Statistics 1</option>
+            <div class="col-md-1"><b>Title</b></div>
+            <div class="col-md-11"><select name="title">
+                {{#each reviewers}}
+                <option value="{{this.title}}">{{this.title}}</option>
+                {{/each}}
             </select></div>
           </div>
           <div class="row">
-            <div class="col-md-1"><b>Title</b></div>
-            <div class="col-md-11"><input type="text" id="title" name="title"></div>
-          </div>
-           <div class="row">
-            <div class="col-md-1"><b>Description</b></div>
-            <div class="col-md-11"><input type="text" id="description" name="description"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-6"><b>Reviewer Content</b> (HTML, content of body only)
-            <textarea id="content" class="codeTA" name="content" onchange="document.getElementById('preview').innerHTML = document.getElementById('content').value; MathJax.typeset();"></textarea></div>
-            <div class="col-md-6"><b>Preview</b> (click outside the input box to view)
-            <div class="window" id="preview" style="height:500px;"></div></div>
+            <div class="col-md-12">
+                <input type="checkbox" required=""> The decision to delete this reviewer is <b>final</b> and I know that this action is <b>irreversible</b>.
+            </div>
           </div>
           <input type="submit">
         </form>
@@ -72,6 +57,7 @@
   <style>
     div.row {
       margin-top:10px;
+      margin-bottom:10px;
     }
     input[type="text"], textarea, select {
       width:100%;

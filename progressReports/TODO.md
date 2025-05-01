@@ -12,7 +12,7 @@
     - ~~this will require IDs of reviewers to be used, either:~~
       - ~~the index of the reviewer in the array~~
       - ~~the time it was sent to the server (unix timestamp)~~
-  - ability to edit and delete reviewers
+  - **(DONE)** ability to edit and delete reviewers
 - Create mock test writing interface
   - similar to MathDash contest writing interface
   - inputs for the following:

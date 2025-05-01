@@ -19,7 +19,7 @@
     <div class="container-lg p-3">
       <h1>Edit reviewer: {{title}}</h1>
       <section>
-        <form id="revEdit" method="POST" action="/portal/rev/submit">
+        <form id="revEdit" method="POST" action="/portal/rev/edit/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
@@ -38,6 +38,10 @@
               <option value="Mathematics 3">Mathematics 3</option>
               <option value="Statistics 1">Statistics 1</option>
             </select></div>
+          </div>
+          <div class="row" style="display:none;">
+            <div class="col-md-1"><b>Original Title</b></div>
+            <div class="col-md-11"><input type="text" id="ogTitle" name="ogTitle" value="{{title}}"></div>
           </div>
           <div class="row">
             <div class="col-md-1"><b>Title</b></div>

@@ -1,19 +1,10 @@
 {
-  "Test Reviewer": {
-    "author": "Kaiser Chan",
-    "verifier": "Kaiser Chan",
-    "date": "2025-04-16",
-    "course": "Meta",
-    "title": "Test Reviewer",
-    "description": "A reviewer for testing purposes",
-    "content": "This reviewer is made solely for testing purposes."
-  },
-  "Test Reviewer 2: HTML and math support": {
+  "Documentation: HTML and math support": {
     "author": "Kaiser Chan",
     "verifier": "Kaiser Chan",
     "date": "2025-04-24",
     "course": "Meta",
-    "title": "Test Reviewer 2: HTML and math support",
+    "title": "Documentation: HTML and math support",
     "content": "We have custom CSS:\r\n<div class=\"noteThemeOrange\">\r\nHello! This is made with the class <code>noteThemeOrange</code>.\r\n</div>\r\nAlso math support: $x=\\frac13$ and $$\\sum^\\infty_{i=1}\\frac1{i^2}=\\frac{\\pi^2}6.$$\r\nKinda cool, <i>right</i>?\r\n\r\n<br><br>This page will soon be updated with actual documentation."
   }
 }
