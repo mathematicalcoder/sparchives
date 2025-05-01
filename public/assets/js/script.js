@@ -4,25 +4,29 @@ const domain = "";
 document.getElementById("navbar").innerHTML = `
 <nav class="navbar navbar-expand-sm navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="${domain}">SPARChives</a>
+    <a class="navbar-brand" href="${domain}/">SPARChives</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="${domain}/examcalendar">Exam Calendar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${domain}/reviewers">Reviewers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${domain}/mocktests">Mock Tests</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="${domain}/gradesheet">Gradesheet</a>
-      </li>
-    </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="${domain}/examcalendar">Exam Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${domain}/reviewers">Reviewers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${domain}/mocktests">Mock Tests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${domain}/gradesheet">Gradesheet</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${domain}/portal">Portal</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>`;
 

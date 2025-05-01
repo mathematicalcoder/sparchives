@@ -129,6 +129,7 @@ app.get('/reviewers', (req, res) => {
   try {
     const reviewers = JSON.parse(fs.readFileSync(revsFilePath));
     const revList = Object.values(reviewers);
+    revList.sort(function(a,b){return new Date(b.date) - new Date(a.date)});
     res.render('revs.hbs', {revs: revList});
   } catch (error) {
     res.status(500).send('Error loading member list!');
