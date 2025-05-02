@@ -42,6 +42,10 @@ app.get('/portal/rev/delete', (req, res) => {
   res.render('revDelete.hbs', {reviewers: revs});
 });
 
+app.get('/portal/mt/add', (req, res) => {
+  res.render('mtContrib.hbs');
+});
+
 app.get('/portal/adminReg', (req, res) => {
   res.render('adminMemberReg.hbs');
 });
