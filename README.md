@@ -88,8 +88,15 @@ The mock test would then contain the following data:
 }
 ```
 
-<hr>
+The reviewer CRUD processes have already been implemented as of now (5 May 2025).
 
+![](readmeImages/image.png)
+![](readmeImages/image-1.png)
+![](readmeImages/image-2.png)
+
+<hr>
+<!--
 <h3>
   Kindly refer to <a href="https://www.canva.com/design/DAGVaV8y1DY/JaB3C07QIKqZ-RQtxEz4FQ/edit">this canva link</a> for the wireframe designs.
 </h3>
+-->
