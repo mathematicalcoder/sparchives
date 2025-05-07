@@ -17,10 +17,16 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>Contribute a Reviewer</h1>
+      <h1>Contribute a Mock Test</h1>
       <section>
-        Number of questions: <input type="number" id="noQuestions">
-        <form id="revContrib" method="POST" action="/portal/rev/add/submit">
+        <button onclick="addQuestion();" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+</svg> Add Question</button>
+<button class="btn btn-danger" style="float:right;" onclick="deleteQuestion();"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+</svg> Delete Question</button>
+        <form id="revContrib" method="POST" action="/portal/mt/add/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
@@ -36,8 +42,6 @@
             <div class="col-md-1"><b>Course</b></div>
             <div class="col-md-2"><select name="course">
               <option value="Meta">Meta</option>
-              <option value="Mathematics 3">Mathematics 3</option>
-              <option value="Statistics 1">Statistics 1</option>
             </select></div>
           </div>
           <div class="row">
@@ -50,22 +54,7 @@
             <div class="col-md-1"><b>Description</b></div>
             <div class="col-md-11"><input type="text" id="description" name="description"></div>
           </div>
-          <div class="row">
-            <div class="col-md-12"><span class="mtHeading">Details for Question 1</span></div>
-          </div>
-          <div class="row">
-            <div class="col-md-1"><b>Statement</b></div>
-            <div class="col-md-11"><textarea type="text" id="statement1" name="description"></textarea></div>
-          </div>
-          <div class="row">
-            <div class="col-md-1"><b>Answer</b></div>
-            <div class="col-md-5"><input type="text" id="answer1" name="answer1"></div>
-            <div class="col-md-1"><b>Points</b></div>
-            <div class="col-md-5"><input type="text" id="points1" name="points1"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-1"><b>Explanation</b></div>
-            <div class="col-md-11"><textarea id="explanation1" name="explanation1"></textarea></div>
+          <div id="questionsForm">
           </div>
           <input type="submit">
         </form>
@@ -80,6 +69,48 @@
       inlineMath: [['$', '$'], ['\\(', '\\)']]
     }
   };
+
+  questionCount = 0;
+
+  function addQuestion() {
+    questionCount += 1
+    document.getElementById("questionsForm").innerHTML +=
+    `<div id="question${questionCount}" class="callout"><div class="row">
+      <div class="col-md-12"><span class="mtHeading">Details for Question <span class="sbHuge" id="counter${questionCount}">${questionCount}</span></span></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"><b>Statement</b></div>
+      <div class="col-md-11"><textarea type="text" id="statement${questionCount}" name="statement${questionCount}"></textarea></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"><b>Answer</b></div>
+      <div class="col-md-8"><textarea id="answer${questionCount}" name="answer${questionCount}"></textarea></div>
+      <div class="col-md-1"><b>Points</b></div>
+      <div class="col-md-2"><input type="number" id="points${questionCount}" name="points${questionCount}"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-1"><b>Explanation</b></div>
+      <div class="col-md-11"><textarea id="explanation${questionCount}" name="explanation${questionCount}"></textarea></div>
+    </div></div>`
+  }
+
+  function deleteQuestion() {
+    let qNo = Number(prompt("Enter the number of the question you want to delete (e.g. 1):"));
+    console.log(document.getElementById(`question${qNo}`))
+    document.getElementById(`question${qNo}`).remove();
+    questionCount -= 1;
+    for (let i = 1; i <= questionCount; i++) {
+      if (i >= qNo) {
+        document.getElementById(`counter${i+1}`).innerHTML = i;
+        document.getElementById(`question${i+1}`).setAttribute("id", `question${i}`);
+        document.getElementById(`counter${i+1}`).setAttribute("id", `counter${i}`);
+        document.getElementById(`statement${i+1}`).setAttribute("id", `statement${i}`);
+        document.getElementById(`answer${i+1}`).setAttribute("id", `answer${i}`);
+        document.getElementById(`points${i+1}`).setAttribute("id", `points${i}`);
+        document.getElementById(`explanation${i+1}`).setAttribute("id", `explanation${i}`);
+      }
+    }
+  }
   </script>
   <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script src="/assets/js/script.js"></script>
