@@ -16,11 +16,13 @@
   <div id="navbar">
   </div>
   <body>
-    <div class="container-lg p-3">
+    <div class="sidebar">
+      <span>Account</span> <a href="/logout">Logout</a>
+    </div>
+    <div class="content">
       <h1>SPARC Member Portal</h1>
-      <p>Hello, <b>{{name}}</b>! Here are the pages you have access to:
+      <p>Hello, <b>{{username}}</b>! Here are the pages you have access to:
       <ul>
-      {{#if member}}
         <li><b>Member pages</b>
         <ul>
           <li>Reviewer actions
@@ -36,13 +38,10 @@
             </ul>
           </li>
         </ul></li>
-      {{/if}}
-      {{#if head}}
         <li><b>Admin pages</b>
         <ul>
           <li><a href="/portal/adminReg">Member Registration Form</a></li>
         </ul></li>
-      {{/if}}
       </ul>
       </p>
     </div>

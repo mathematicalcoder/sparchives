@@ -178,6 +178,7 @@ div.sidebar span {
 div.sidebar a {
   font-weight:bold;
   font-size:12px;
+  text-decoration:none;
 }
 
 div.sidebar a:hover {

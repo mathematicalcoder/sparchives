@@ -1,23 +1,51 @@
 const express = require('express');
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
 const path = require('path');
 const fs = require('fs');
+
 const app = express();
 const port = 5000;
 
-// Set the view engine to Handlebars
+// middleware
 app.set('view engine', 'hbs');
-
-// Serve static files from the "public" folder
 app.use(express.static('public'));
-
-// Middleware to parse URL-encoded bodies (form data)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  secret: 'bTMc9R1I/LHscxaBRR0fGzMD8U7ukt+11RtMaDyenbgPFgcUhcWtYTpVWSM=',  // randomly generated base64 characters
+  resave: false,
+  saveUninitialized: false
+}))
+
+// helpers - credit to Sir Roy C. for the below code
+function getUsers() {
+  if (!fs.existsSync(usersFilePath)) {
+    return []
+  }
+  const data = fs.readFileSync(usersFilePath, 'utf8')
+  return JSON.parse(data)
+}
+
+function saveUsers(users) {
+  const dirPath = path.dirname(usersFilePath)
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+  fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2))
+}
+
+function requireLogin(req, res, next) {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
+  next();
+}
 
 // Define a route
-app.get('/portal', (req, res) => {
-    res.render('portalHome.hbs', {name: "Kaiser Chan", member: true, head: true});
-  });
+app.get('/portal', requireLogin, (req, res) => {
+    res.render('portalHome.hbs', {username: req.session.userId});
+});
 
 app.get('/portal/rev/add', (req, res) => {
     res.render('revContrib.hbs');
@@ -68,12 +96,21 @@ app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
 
-// initialize members.json
-const membersFilePath = path.join(__dirname, 'data', 'members.json');
+// initialize data folder
 if (!fs.existsSync(path.join(__dirname, 'data'))) {
   console.log('Creating data directory...');
   fs.mkdirSync(path.join(__dirname, 'data'));
 }
+
+// initialize users.json
+const usersFilePath = path.join(__dirname, 'data', 'users.json')
+if (!fs.existsSync(usersFilePath)) {
+  console.log('Creating users.json file...')
+  fs.writeFileSync(usersFilePath, '[]');
+}
+
+// initialize members.json
+const membersFilePath = path.join(__dirname, 'data', 'members.json');
 if (!fs.existsSync(membersFilePath)) {
   console.log('Creating members.json file...');
   fs.writeFileSync(membersFilePath, '{}');
@@ -81,13 +118,16 @@ if (!fs.existsSync(membersFilePath)) {
 
 // initialize revs.json
 const revsFilePath = path.join(__dirname, 'data', 'revs.json');
-if (!fs.existsSync(path.join(__dirname, 'data'))) {
-  console.log('Creating data directory...');
-  fs.mkdirSync(path.join(__dirname, 'data'));
-}
 if (!fs.existsSync(revsFilePath)) {
   console.log('Creating revs.json file...');
   fs.writeFileSync(revsFilePath, '{}');
+}
+
+// initialize mocktests.json
+const mtFilePath = path.join(__dirname, 'data', 'mocktests.json');
+if (!fs.existsSync(path.join(mtFilePath))) {
+  console.log('Creating mocktests.json file...');
+  fs.writeFileSync(mtFilePath, '{}');
 }
 
 // handle member registration
@@ -177,6 +217,46 @@ app.post('/portal/rev/delete/submit', (req, res) => {
   }
 })
 
+// handle mock test addition
+
+app.post('/portal/mt/add/submit', (req, res) => {
+  const rawMtData = req.body;
+  if (!(rawMtData.author && rawMtData.verifier && rawMtData.date && rawMtData.course && rawMtData.title&& rawMtData.timeLimit&& rawMtData.description)) {
+    console.error("At least one required field is missing! ", { title });
+    return res.status(400).send("At least one required field is missing!")
+  }
+  try { 
+    const mtData = {};
+    mtData.author = rawMtData.author;
+    mtData.verifier = rawMtData.verifier;
+    mtData.date = rawMtData.date;
+    mtData.course = rawMtData.course;
+    mtData.title = rawMtData.title;
+    mtData.timeLimit = rawMtData.timeLimit;
+    mtData.description = rawMtData.description;
+    mtData.instructions = rawMtData.instructions;
+    let questions = [];
+    let qnExists = true;
+    let qnCounter = 1;
+    while (qnExists) {
+      let question = {};
+      question.statement = rawMtData[`statement${qnCounter}`];
+      question.answer = rawMtData[`answer${qnCounter}`];
+      question.points = rawMtData[`points${qnCounter}`];
+      question.explanation = rawMtData[`explanation${qnCounter}`];
+      questions.push(question);
+    }
+    mtData.questions = questions;
+    const mockTests = JSON.parse(fs.readFileSync(mtFilePath));
+    mockTests[rawMtData.title] = mtData;
+    fs.writeFileSync(mtFilePath, JSON.stringify(mockTests, null, 2));
+    res.redirect('/portal');
+  } catch(error) {
+    console.error(error);
+    res.status(500).send('Error registering the mock test!');
+  }
+})
+
 // reviewers page
 app.get('/reviewers', (req, res) => {
   try {
@@ -205,4 +285,45 @@ app.get('/reviewer', (req, res) => {
     console.error("Reviewer not found! ", { author, verifier, date, course, title, content });
     return res.status(404).send('Reviewer not found!');
   }
+})
+
+// login page
+app.get('/login', (req, res) => {
+  res.render('login.hbs')
+})
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  const users = getUsers();
+  const user = users.find(u => u.username === username)
+
+  if (user && await bcrypt.compare(password, user.password)) {
+    req.session.userId = username
+    res.redirect('/portal')
+  } else {
+    res.render('login.hbs', { error: 'Please check your username and/or password.' })
+  }
+})
+
+// logout page
+app.get('/logout', (req, res) => {
+  req.session.destroy()
+  res.redirect('/login')
+})
+
+// register page
+app.get('/register', (req, res) => {
+  res.render('register.hbs')
+})
+
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body
+  const users = getUsers();
+  if (users.find(u => u.username === username)) {
+    return res.render('register.hbs', {error: 'The username already exists.'})
+  }
+  const hashedPassword = await bcrypt.hash(password, 10)
+  users.push({username, password: hashedPassword})
+  saveUsers(users)
+  res.redirect('/login')
 })

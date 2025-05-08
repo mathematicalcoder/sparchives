@@ -31,4 +31,4 @@ document.getElementById("navbar").innerHTML = `
 </nav>`;
 
 // display footer
-document.getElementById("footer").innerHTML += `<p><b>SPARChives</b>. Website made by Kaiser Chan (9-Sr) and Schiel Battung (9-Sr) for PSHS-MC SPARC 2028. <br> <a href="https://github.com/mathematicalcoder/sparchives/issues">Report bugs or request features here</a></p>`;
+document.getElementById("footer").innerHTML += `<p><b>SPARChives</b>. Website made by Kaiser Chan (9-Sr) for PSHS-MC SPARC 2028. <br> <a href="https://github.com/mathematicalcoder/sparchives/issues">Report bugs or request features here</a></p>`;

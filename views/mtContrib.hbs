@@ -50,9 +50,13 @@
             <div class="col-md-2"><b>Time Limit (seconds)</b></div>
             <div class="col-md-2"><input type="number" id="timeLimit" name="timeLimit"></div>
           </div>
-           <div class="row">
+          <div class="row">
             <div class="col-md-1"><b>Description</b></div>
             <div class="col-md-11"><input type="text" id="description" name="description"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-1"><b>Additional Instructions</b></div>
+            <div class="col-md-11">(optional; each instruction must be on a new line)<textarea id="instructions" name="instructions"></textarea></div>
           </div>
           <div id="questionsForm">
           </div>
@@ -74,8 +78,11 @@
 
   function addQuestion() {
     questionCount += 1
-    document.getElementById("questionsForm").innerHTML +=
-    `<div id="question${questionCount}" class="callout"><div class="row">
+    const question = document.createElement("div");
+    question.setAttribute("id", `question${questionCount}`);
+    question.setAttribute("class", `callout`);
+    question.innerHTML =
+    `<div class="row">
       <div class="col-md-12"><span class="mtHeading">Details for Question <span class="sbHuge" id="counter${questionCount}">${questionCount}</span></span></div>
     </div>
     <div class="row">
@@ -91,7 +98,8 @@
     <div class="row">
       <div class="col-md-1"><b>Explanation</b></div>
       <div class="col-md-11"><textarea id="explanation${questionCount}" name="explanation${questionCount}"></textarea></div>
-    </div></div>`
+    </div>`
+    document.getElementById("questionsForm").appendChild(question);
   }
 
   function deleteQuestion() {
