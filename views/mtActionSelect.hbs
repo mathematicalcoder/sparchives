@@ -19,7 +19,7 @@
     <div class="container-lg p-3">
       <h1>Mock test actions</h1>
       <section>
-        <form method="POST" action="/portal/rev/actionSelect/submit">
+        <form method="POST" action="/portal/mt/actionSelect/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-md-1"><b>Title</b></div>
             <div class="col-md-11"><select name="title">
-                {{#each reviewers}}
+                {{#each mocktests}}
                 <option value="{{this.title}}">{{this.title}}</option>
                 {{/each}}
             </select></div>
@@ -36,7 +36,7 @@
           <div class="row">
             <div class="col-md-1"><b>Action</b></div>
             <div class="col-md-11"><select name="action">
-                <!--<option value="edit">Edit</option>-->
+                <option value="edit">Edit</option>
                 <option value="delete">Delete</option>
                 <option value="release">Release</option>
                 <option value="makePrivate">Make Private</option>

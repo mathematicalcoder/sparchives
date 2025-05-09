@@ -68,10 +68,48 @@ app.get('/portal/mt/add', requireLogin, (req, res) => {
   res.render('mtContrib.hbs');
 });
 
+app.get('/portal/mt/edit', requireLogin, (req, res) => {
+  const { title } = req.query;
+  const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+  const mt = mocktests[title];
+  const author = mt["author"];
+  const verifier = mt["verifier"];
+  const date = mt["date"];
+  const course = mt["course"];
+  const description = mt["description"];
+  const timeLimit = mt["timeLimit"];
+  const questions = mt.questions
+  const noQuestions = mt.questions.length;
+  const additionalInstructions = mt["instructions"].split("\n")
+  for (let i = 0; i < noQuestions; i++) {
+    questions[i].index = i+1
+  }
+  const questionsString = JSON.stringify(questions)
+  res.render('mtEdit.hbs', {
+      title: title,
+      author: author,
+      verifier: verifier,
+      date: date,
+      course: course,
+      description: description,
+      additionalInstructions: additionalInstructions,
+      timeLimit: timeLimit,
+      noQuestions: noQuestions,
+      questions: questions,
+      questionsString: questionsString
+    });
+});
+
+app.get('/portal/mt/actionSelect', requireLogin, (req, res) => {
+  const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+  res.render('mtActionSelect.hbs', {mocktests: mocktests});
+});
+
 app.get('/portal/adminReg', requireLogin, requireLogin, (req, res) => {
   res.render('adminMemberReg.hbs');
 });
 
+// not able to implement in time
 app.get('/portal/requestForm', requireLogin, (req, res) => {
   res.render('requestForm.hbs');
 });
@@ -233,7 +271,6 @@ app.post('/portal/rev/edit/submit', requireLogin, (req, res) => {
 })
 
 // handle mock test addition
-
 app.post('/portal/mt/add/submit', requireLogin, (req, res) => {
   const rawMtData = req.body;
   if (!(rawMtData.author && rawMtData.verifier && rawMtData.date && rawMtData.course && rawMtData.title&& rawMtData.timeLimit&& rawMtData.description)) {
@@ -267,6 +304,92 @@ app.post('/portal/mt/add/submit', requireLogin, (req, res) => {
     }
     mtData.questions = questions;
     const mockTests = JSON.parse(fs.readFileSync(mtFilePath));
+    mockTests[rawMtData.title] = mtData;
+    fs.writeFileSync(mtFilePath, JSON.stringify(mockTests, null, 2));
+    res.redirect('/portal');
+  } catch(error) {
+    console.error(error);
+    res.status(500).send('Error registering the mock test!');
+  }
+})
+
+// handle mock test action selection
+app.post('/portal/mt/actionSelect/submit', requireLogin, (req, res) => {
+  const { title, action } = req.body
+  if (!title || !action) {
+    console.error("At least one required field is missing! ", { title, action });
+    return res.status(400).send("At least one required field is missing!")
+  }
+  if (action == "edit") {
+    res.redirect(`/portal/mt/edit?title=${title}`)
+  } else if  (action == "delete") {
+    try {
+      const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+      delete mocktests[title];
+      fs.writeFileSync(mtFilePath, JSON.stringify(mocktests, null, 2));
+      res.redirect('/portal');
+    } catch(error) {
+      console.error(error);
+      res.status(500).send('Error deleting the reviewer!');
+    }
+  } else if (action == "release") {
+    try {
+      const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+      mocktests[title].released = true;
+      fs.writeFileSync(mtFilePath, JSON.stringify(mocktests, null, 2))
+      res.redirect('/portal')
+    } catch(error) {
+      console.error(error);
+      res.status(500).send('Error releasing the reviewer!');
+    }
+  } else if (action == "makePrivate") {
+    try {
+      const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+      mocktests[title].released = false;
+      fs.writeFileSync(mtFilePath, JSON.stringify(mocktests, null, 2))
+      res.redirect('/portal')
+    } catch(error) {
+      console.error(error);
+      res.status(500).send('Error making the reviewer private!');
+    }
+  }
+})
+
+// handle mock test edition
+app.post('/portal/mt/edit/submit', requireLogin, (req, res) => {
+  const rawMtData = req.body;
+  if (!(rawMtData.author && rawMtData.verifier && rawMtData.date && rawMtData.course && rawMtData.title&& rawMtData.timeLimit&& rawMtData.description)) {
+    console.error("At least one required field is missing! ", { title });
+    return res.status(400).send("At least one required field is missing!")
+  }
+  try { 
+    const mtData = {};
+    mtData.author = rawMtData.author;
+    mtData.verifier = rawMtData.verifier;
+    mtData.date = rawMtData.date;
+    mtData.course = rawMtData.course;
+    mtData.title = rawMtData.title;
+    mtData.timeLimit = rawMtData.timeLimit;
+    mtData.description = rawMtData.description;
+    mtData.instructions = rawMtData.instructions;
+    let questions = [];
+    let qnExists = true;
+    let qnCounter = 1;
+    while (qnExists) {
+      let question = {};
+      question.statement = rawMtData[`statement${qnCounter}`];
+      question.answer = rawMtData[`answer${qnCounter}`];
+      question.points = rawMtData[`points${qnCounter}`];
+      question.explanation = rawMtData[`explanation${qnCounter}`];
+      questions.push(question);
+      qnCounter += 1;
+      if (!rawMtData[`statement${qnCounter}`]) {
+        qnExists = false;
+      }
+    }
+    mtData.questions = questions;
+    const mockTests = JSON.parse(fs.readFileSync(mtFilePath));
+    delete mockTests[ogTitle]
     mockTests[rawMtData.title] = mtData;
     fs.writeFileSync(mtFilePath, JSON.stringify(mockTests, null, 2));
     res.redirect('/portal');
