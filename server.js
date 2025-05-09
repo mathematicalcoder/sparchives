@@ -47,42 +47,36 @@ app.get('/portal', requireLogin, (req, res) => {
     res.render('portalHome.hbs', {username: req.session.userId});
 });
 
-app.get('/portal/rev/add', (req, res) => {
+app.get('/portal/rev/add', requireLogin, (req, res) => {
     res.render('revContrib.hbs');
 });
 
-app.get('/portal/rev/edit', (req, res) => {
+app.get('/portal/rev/edit', requireLogin, (req, res) => {
   const { title } = req.query;
   const revs = JSON.parse(fs.readFileSync(revsFilePath));
   const reviewer = revs[title];
   res.render('revEdit.hbs', {title: title, author: reviewer.author, verifier: reviewer.verifier, date: reviewer.date, course: reviewer.course, content: reviewer.content});
 });
 
-app.get('/portal/rev/editSelect', (req, res) => {
+app.get('/portal/rev/actionSelect', requireLogin, (req, res) => {
   const { title } = req.query;
   const revs = JSON.parse(fs.readFileSync(revsFilePath));
-  res.render('revEditSelect.hbs', {reviewers: revs});
+  res.render('revActionSelect.hbs', {reviewers: revs});
 });
 
-app.get('/portal/rev/delete', (req, res) => {
-  const { title } = req.query;
-  const revs = JSON.parse(fs.readFileSync(revsFilePath));
-  res.render('revDelete.hbs', {reviewers: revs});
-});
-
-app.get('/portal/mt/add', (req, res) => {
+app.get('/portal/mt/add', requireLogin, (req, res) => {
   res.render('mtContrib.hbs');
 });
 
-app.get('/portal/adminReg', (req, res) => {
+app.get('/portal/adminReg', requireLogin, requireLogin, (req, res) => {
   res.render('adminMemberReg.hbs');
 });
 
-app.get('/portal/requestForm', (req, res) => {
+app.get('/portal/requestForm', requireLogin, (req, res) => {
   res.render('requestForm.hbs');
 });
 
-app.get('/portal/members', (req, res) => {
+app.get('/portal/members', requireLogin, (req, res) => {
   try {
     const members = JSON.parse(fs.readFileSync(membersFilePath));
     const memberList = Object.values(members);
@@ -131,7 +125,7 @@ if (!fs.existsSync(path.join(mtFilePath))) {
 }
 
 // handle member registration
-app.post('/portal/adminReg/submit', (req, res) => {
+app.post('/portal/adminReg/submit', requireLogin, (req, res) => {
   const { surname, given, mi, section } = req.body;
   const name = `${surname.toUpperCase()}, ${given} ${mi}.`;
   console.log(`Registering ${name} (${section}) as a member...`);
@@ -154,7 +148,7 @@ app.post('/portal/adminReg/submit', (req, res) => {
 });
 
 // handle reviewer submission
-app.post('/portal/rev/add/submit', (req, res) => {
+app.post('/portal/rev/add/submit', requireLogin, (req, res) => {
   const { author, verifier, date, course, title, description, content } = req.body;
   console.log(`Registering the reviewer ${title} by ${author}...`);
 
@@ -174,8 +168,40 @@ app.post('/portal/rev/add/submit', (req, res) => {
   }
 })
 
+// handle reviewer action selection
+app.post('/portal/rev/actionSelect/submit', requireLogin, (req, res) => {
+  const { title, action } = req.body
+  if (!title || !action) {
+    console.error("At least one required field is missing! ", { title, action });
+    return res.status(400).send("At least one required field is missing!")
+  }
+  if (action == "edit") {
+    res.redirect(`/portal/rev/edit?title=${title}`)
+  } else if  (action == "delete") {
+    try {
+      const revs = JSON.parse(fs.readFileSync(revsFilePath));
+      delete revs[title];
+      fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
+      res.redirect('/portal');
+    } catch(error) {
+      console.error(error);
+      res.status(500).send('Error deleting the reviewer!');
+    }
+  } else if (action == "release") {
+    try {
+      const revs = JSON.parse(fs.readFileSync(revsFilePath))
+      revs[title].released = true;
+      fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2))
+      res.redirect('/portal')
+    } catch(error) {
+      console.error(error);
+      res.status(500).send('Error releasing the reviewer!');
+    }
+  }
+})
+
 // handle reviewer edition
-app.post('/portal/rev/edit/submit', (req, res) => {
+app.post('/portal/rev/edit/submit', requireLogin, (req, res) => {
   const { author, verifier, date, course, ogTitle, title, description, content } = req.body;
   console.log(`Editing the reviewer ${ogTitle} by ${author}...`);
 
@@ -196,30 +222,9 @@ app.post('/portal/rev/edit/submit', (req, res) => {
   }
 })
 
-// handle reviewer deletion
-app.post('/portal/rev/delete/submit', (req, res) => {
-  const { title } = req.body;
-  console.log(`Deleting the reviewer ${title}...`);
-
-  if (!title) {
-    console.error("At least one required field is missing! ", { title });
-    return res.status(400).send("At least one required field is missing!")
-  }
-
-  try {
-    const revs = JSON.parse(fs.readFileSync(revsFilePath));
-    delete revs[title];
-    fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2));
-    res.redirect('/portal');
-  } catch(error) {
-    console.error(error);
-    res.status(500).send('Error deleting the reviewer!');
-  }
-})
-
 // handle mock test addition
 
-app.post('/portal/mt/add/submit', (req, res) => {
+app.post('/portal/mt/add/submit', requireLogin, (req, res) => {
   const rawMtData = req.body;
   if (!(rawMtData.author && rawMtData.verifier && rawMtData.date && rawMtData.course && rawMtData.title&& rawMtData.timeLimit&& rawMtData.description)) {
     console.error("At least one required field is missing! ", { title });
@@ -245,6 +250,10 @@ app.post('/portal/mt/add/submit', (req, res) => {
       question.points = rawMtData[`points${qnCounter}`];
       question.explanation = rawMtData[`explanation${qnCounter}`];
       questions.push(question);
+      qnCounter += 1;
+      if (!rawMtData[`statement${qnCounter}`]) {
+        qnExists = false;
+      }
     }
     mtData.questions = questions;
     const mockTests = JSON.parse(fs.readFileSync(mtFilePath));
@@ -326,4 +335,22 @@ app.post('/register', async (req, res) => {
   users.push({username, password: hashedPassword})
   saveUsers(users)
   res.redirect('/login')
+})
+
+// change password page
+app.get('/changePassword', requireLogin, (req, res) => {
+  res.render('changePassword.hbs')
+})
+
+app.post('/changePassword', requireLogin, async (req, res) => {
+  const { currentPassword, newPassword } = req.body
+  const users = getUsers()
+  const user = users.find(u => u.username === req.session.userId)
+  if (await bcrypt.compare(currentPassword, user.password)) {
+    user.password = await bcrypt.hash(newPassword, 10)
+    saveUsers(users)
+    res.redirect('/portal')
+  } else {
+    res.render('/changePassword', {error: 'The current password is incorrect.'})
+  }
 })

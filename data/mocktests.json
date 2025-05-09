@@ -1,1 +1,20 @@
-{}
+{
+  "Example Mock Test 1": {
+    "author": "Kaiser Chan",
+    "verifier": "Kaiser Chan",
+    "date": "2025-05-09",
+    "course": "Meta",
+    "title": "Example Mock Test 1",
+    "timeLimit": "300",
+    "description": "This mock test is made to familiarize yourself with the SPARC mock test system.",
+    "instructions": "Answers to all math questions are nonnegative integers.",
+    "questions": [
+      {
+        "statement": "The value of $1+2+3+\\frac45$ can be expressed as $\\frac ab$ where $a$ and $b$ are relatively prime positive integers. Find $a+b$. <i>(In other words, find the sum of the numerator and denominator of the value of the expression when expressed in simplest form.)</i>",
+        "answer": "39",
+        "points": "1",
+        "explanation": "The simplest form of the value of the expression is $\\frac{35}4$. So, the answer is $35+4=\\boxed{39}$."
+      }
+    ]
+  }
+}
