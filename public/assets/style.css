@@ -313,12 +313,7 @@ button, input[type="submit"] {
   padding: 6px 12px 6px 12px;
 }
 
-
-input, select {
-  width:150px;
-}
-
-input.fullInput, textarea, .window {
+input, textarea, select, .window {
   width: 100%;
 }
 

@@ -7,5 +7,15 @@
     "title": "Test Reviewer: HTML and math support",
     "content": "We have custom CSS:\r\n<div class=\"noteThemeOrange\">\r\nHello! This is made with the class <code>noteThemeOrange</code>.\r\n</div>\r\nAlso math support: $x=\\frac13$ and $$\\sum^\\infty_{i=1}\\frac1{i^2}=\\frac{\\pi^2}6.$$\r\nKinda cool, <i>right</i>?\r\n\r\n<br><br>This page will likely soon be updated with actual documentation.",
     "released": true
+  },
+  "Test reviewer 2": {
+    "author": "Kaiser Chan",
+    "verifier": "Kaiser Chan",
+    "date": "2025-05-09",
+    "course": "Meta",
+    "title": "Test reviewer 2",
+    "description": "for testing purposes",
+    "content": "for testing purposes only",
+    "released": false
   }
 }

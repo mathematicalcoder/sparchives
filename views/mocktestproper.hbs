@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="pshs, pshs-mc, pshs-mc sparc 2028, pshs-mc batch 2028, schiel battung, kaiser chan" />
+    <meta name="description" content="The website for SPARC 2028. [student-led organization under the PSHS-MC, Philippines]" />
+    <meta name="author" content="{{author}}" />
+    <meta name="revised" content="{{date}}" />
+    <title>{{title}} | PSHS-MC SPARC 2028</title>
+    <link href="/assets/style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/53819453-3d57-487f-b6e1-86bfc5d1d91f/favicon.ico?v=1734621443858">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <div id="navbar">
+  </div>
+  <body>
+    <div class="sidebar">
+      <span class="defaultBG">Time Left</span><span class="sbLarge" id="timer"><span id="minutes"></span> min <span id="seconds"></span> s</span>
+      <div id="score"></div>
+      <a onclick='checkAnswers({{{questionsString}}})'>Submit Answers</a>
+    </div>
+    <div class="content">
+      <h1>{{title}}</h1>
+      <p>
+        <span class="mtHeading">Instructions and Information</span><br>
+        <ol>
+            <li>Answer all questions without any notes, resources, calculators, etc. (Calculators and Jamovi are allowed in Statistics mock tests and calculators are allowed in Chemistry and Physics mock tests unless otherwise stated.)</li>
+            <li>Answers are not case sensitive and ignore all whitespace before and after the answer. For example, if the correct answer is “<code>apple</code>”, both “<code>ApPlE</code>” and “<code>   apple  </code>” count as correct answers.</li>
+            <li>Where applicable, follow the answer format stated in the questions.</li>
+            {{#each additionalInstructions}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ol>
+      </p>
+      {{#each questions}}
+      <div class="row">
+        <div class="col-md-3" id="p{{this.index}}Status"><input type="text" id="p{{this.index}}Answer"></div>
+        <div class="col-md-9"><span class="mtHeading">Question {{this.index}} ({{this.points}} point/s).</span> {{{this.statement}}}<span id="p{{this.index}}Exp"></span></div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="submittedToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Success</strong>
+          <small>Mock Test</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          You successfully submitted your answers!
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer id="footer" class="container-fluid">
+    <b>References</b>
+    <ul>
+      <li><i>OpenAI</i>. (2023). <i>ChatGPT</i> (GPT-4-turbo) [Large language model]. <a href="https://chat.openai.com">https://chat.openai.com</a></li>
+    </ul>
+  </footer>
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script src="/assets/js/script.js"></script>
+  <style>
+    div.row {
+      margin-top:10px;
+    }
+    input[type="text"], textarea {
+      width:100%;
+    }
+  </style>
+  <script>
+function timer(timeLimit, questions) {
+  var i = 0;
+  const timer = setInterval(function(){
+    if (i > 60 * timeLimit) {
+      clearInterval(timer)
+      checkAnswers(questions)
+    } else {
+      document.getElementById("minutes").innerHTML = Math.floor((60 * timeLimit - i) / 60)  // number of minutes left
+      document.getElementById("seconds").innerHTML = Math.floor((60 * timeLimit - i) % 60)  // number of seconds left
+      i++
+    }
+  },1000);  // do every 1 second
+}
+
+function checkAnswers(questions) {
+  // all post-test functions
+  document.getElementById("timer").innerHTML = "Submitted"  // remove timer
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function(toastEl) {
+    return new bootstrap.Toast(toastEl)
+  })
+  toastList.forEach(toast => toast.show())  // success message
+  
+  var score = 0;
+  for (let i = 0; i < questions.length; i++) {
+    var userAnswer = document.getElementById(`p${i+1}Answer`).value;
+    if (questions[i].type == "essay") {
+      score += Number(questions[i].points)
+      document.getElementById(`p${i+1}Status`).innerHTML = `<span class="success">This question will not be graded. You are automatically given ${Number(questions[i].points)} point/s.<br>Your Answer: ${userAnswer}</span>`
+    }
+    else {
+      var correctAnswer = questions[i].answer;
+      if (userAnswer.trim().toUpperCase() == correctAnswer.trim().toUpperCase()) {
+        document.getElementById(`p${i+1}Status`).innerHTML = `<span class="success">Correct! (${Number(questions[i].points)} point/s)<br>Answer: ${correctAnswer}</span>`  // display correct message
+        score += Number(questions[i].points)  // add points
+      } else {
+        document.getElementById(`p${i+1}Status`).innerHTML = `<span class="danger">Incorrect! (0 points)<br>Your Answer: ${userAnswer}<br>Correct Answer: ${correctAnswer}</span>`  // display incorrect message
+      }
+    }
+    if (Object.hasOwn(questions[i],"explanation")) {
+      document.getElementById(`p${i+1}Exp`).innerHTML = `<br><span class="mtHeading">Explanation.</span> ${questions[i].explanation}<br>`
+    }
+    else {
+      document.getElementById(`p${i+1}Exp`).innerHTML = `<br><span class="mtHeading">This question does not have an uploaded explanation yet.</span><br>`
+    }
+    MathJax.typeset();
+  }
+  
+  // display score on sidebar
+  var hps = {{hps}};
+  var scoreHeader = document.createElement("span")
+  scoreHeader.innerHTML = "Score"
+  scoreHeader.setAttribute('class', 'defaultBG')
+  document.getElementById("score").appendChild(scoreHeader)
+  var scoreContent = document.createElement("span")
+  scoreContent.innerHTML = `<span id="score">${score}</span> / <span id="hps">{{{hps}}}</span>`
+  scoreContent.setAttribute('class', 'sbLarge')
+  document.getElementById("score").appendChild(scoreContent)
+}
+
+timer({{timeLimit}}, {{{questionsString}}})
+  </script>
+</html>

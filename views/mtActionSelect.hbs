@@ -17,20 +17,32 @@
   </div>
   <body>
     <div class="container-lg p-3">
-      <h1>SPARC Request Form</h1>
+      <h1>Mock test actions</h1>
       <section>
-        <form id="revContrib" method="POST" action="/portal/requestForm/submit">
+        <form method="POST" action="/portal/rev/actionSelect/submit">
           <!--<label for="author">Author:</label> <input type="text" id="author"><br>
           <label for="author">Verifier:</label> <input type="text" id="verifier"><br>
           <label for="releaseDate">Date:</label> <input type="date" id="releaseDate"><br>
           <label for="content">Reviewer Content (HTML, content of body only):</label> <textarea type="content" style="height:500px;"></textarea>
           <input type="submit">-->
           <div class="row">
-            <div class="col-md-3"><b>Request / Suggestion</b><br>Rest assured that your identity is kept hidden.</div>
-            <div class="col-md-9"><textarea placeholder="Enter request here..." id="request" name="request" style="height:300px;"></textarea></div>
+            <div class="col-md-1"><b>Title</b></div>
+            <div class="col-md-11"><select name="title">
+                {{#each reviewers}}
+                <option value="{{this.title}}">{{this.title}}</option>
+                {{/each}}
+            </select></div>
           </div>
-          <br>
-          <input type="submit">
+          <div class="row">
+            <div class="col-md-1"><b>Action</b></div>
+            <div class="col-md-11"><select name="action">
+                <!--<option value="edit">Edit</option>-->
+                <option value="delete">Delete</option>
+                <option value="release">Release</option>
+                <option value="makePrivate">Make Private</option>
+            </select></div>
+          </div>
+          <input type="submit" onclick="confirm('Are you sure of your action?')">
         </form>
       </section>
     </div>
@@ -49,6 +61,7 @@
   <style>
     div.row {
       margin-top:10px;
+      margin-bottom:10px;
     }
     input[type="text"], textarea, select {
       width:100%;

@@ -197,6 +197,16 @@ app.post('/portal/rev/actionSelect/submit', requireLogin, (req, res) => {
       console.error(error);
       res.status(500).send('Error releasing the reviewer!');
     }
+  } else if (action == "makePrivate") {
+    try {
+      const revs = JSON.parse(fs.readFileSync(revsFilePath))
+      revs[title].released = false;
+      fs.writeFileSync(revsFilePath, JSON.stringify(revs, null, 2))
+      res.redirect('/portal')
+    } catch(error) {
+      console.error(error);
+      res.status(500).send('Error making the reviewer private!');
+    }
   }
 })
 
@@ -293,6 +303,87 @@ app.get('/reviewer', (req, res) => {
   } catch(error) {
     console.error("Reviewer not found! ", { author, verifier, date, course, title, content });
     return res.status(404).send('Reviewer not found!');
+  }
+})
+
+// mock tests page
+app.get('/mocktests', (req, res) => {
+  try {
+    const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+    const mtList = Object.values(mocktests);
+    mtList.sort(function(a,b){return new Date(b.date) - new Date(a.date)});
+    res.render('mocktests.hbs', {mocktests: mtList});
+  } catch (error) {
+    res.status(500).send('Error loading member list!');
+  }
+});
+
+// specific mock test page
+app.get('/mocktestreg', (req, res) => {
+  const { title } = req.query;
+  const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+  const mt = mocktests[title];
+  const author = mt["author"];
+  const verifier = mt["verifier"];
+  const date = mt["date"];
+  const course = mt["course"];
+  const description = mt["description"];
+  const timeLimit = mt["timeLimit"];
+  const noQuestions = mt.questions.length;
+  const additionalInstructions = mt["instructions"].split("\n")
+  let hps = 0;
+  for (question of mt.questions) {
+    hps += Number(question.points)
+  }
+  try {
+    res.render('mocktestreg.hbs', {
+      author: author, 
+      verifier: verifier, 
+      date: date, 
+      course: course, 
+      title: title,
+      description: description,
+      additionalInstructions: additionalInstructions,
+      timeLimit: timeLimit,
+      noQuestions: noQuestions,
+      hps: hps
+    });
+  } catch(error) {
+    console.error("Mock test not found! ", { author, verifier, date, course, title, description, timeLimit, noQuestions, hps });
+    return res.status(404).send('Mock test not found!');
+  }
+})
+
+app.get('/mocktest', (req, res) => {
+  const { title } = req.query;
+  const mocktests = JSON.parse(fs.readFileSync(mtFilePath));
+  const mt = mocktests[title];
+  const timeLimit = mt["timeLimit"];
+  const questions = mt.questions
+  const noQuestions = mt.questions.length;
+  const additionalInstructions = mt["instructions"].split("\n")
+  let hps = 0;
+  for (let question of mt.questions) {
+    hps += Number(question.points)
+  }
+  for (let i = 0; i < noQuestions; i++) {
+    questions[i].index = i+1
+  }
+  const questionsString = JSON.stringify(questions)
+  try {
+    res.render('mocktestproper.hbs', {
+      title: title,
+      additionalInstructions: additionalInstructions,
+      timeLimit: timeLimit,
+      noQuestions: noQuestions,
+      hps: hps,
+      questions: questions,
+      questionsString: questionsString
+    });
+    console.log(hps)
+  } catch(error) {
+    console.error("Mock test not found! ");
+    return res.status(404).send('Mock test not found!');
   }
 })
 

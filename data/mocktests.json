@@ -5,7 +5,7 @@
     "date": "2025-05-09",
     "course": "Meta",
     "title": "Example Mock Test 1",
-    "timeLimit": "300",
+    "timeLimit": "5",
     "description": "This mock test is made to familiarize yourself with the SPARC mock test system.",
     "instructions": "Answers to all math questions are nonnegative integers.",
     "questions": [
@@ -15,6 +15,7 @@
         "points": "1",
         "explanation": "The simplest form of the value of the expression is $\\frac{35}4$. So, the answer is $35+4=\\boxed{39}$."
       }
-    ]
+    ],
+    "released": true
   }
 }
