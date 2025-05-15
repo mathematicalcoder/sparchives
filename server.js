@@ -1,3 +1,5 @@
+// Only the current glitch version is part of the cs project
+
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
@@ -10,7 +12,7 @@ const port = 5000;
 // middleware; some optimized for vercel
 app.set("views", __dirname + "/views");
 app.set('view engine', 'hbs');
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
@@ -569,3 +571,5 @@ app.post('/changePassword', requireLogin, async (req, res) => {
     res.render('/changePassword', {error: 'The current password is incorrect.'})
   }
 })
+
+module.exports = app;
