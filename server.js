@@ -7,9 +7,10 @@ const fs = require('fs');
 const app = express();
 const port = 5000;
 
-// middleware
+// middleware; some optimized for vercel
+app.set("views", __dirname + "/views");
 app.set('view engine', 'hbs');
-app.use(express.static('public'));
+app.use(express.static(__dirname + 'public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
